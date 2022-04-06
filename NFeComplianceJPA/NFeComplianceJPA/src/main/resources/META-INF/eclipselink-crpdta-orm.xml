@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.5" xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.eclipse.org/eclipselink/xsds/persistence/orm http://www.eclipse.org/eclipselink/xsds/eclipselink_orm_2_5.xsd">
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC80">
+	    <table name="F55IJC80" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC81">
+	    <table name="F55IJC81" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC82">
+	    <table name="F55IJC82" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC83">
+	    <table name="F55IJC83" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC84">
+	    <table name="F55IJC84" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC85">
+	    <table name="F55IJC85" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC86">
+	    <table name="F55IJC86" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC87">
+	    <table name="F55IJC87" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC88">
+	    <table name="F55IJC88" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC90">
+	    <table name="F55IJC90" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F76B01TE">
+	    <table name="F76B01TE" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F4211">
+	    <table name="F4211" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F42119">
+	    <table name="F42119" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F7611B">
+	    <table name="F7611B" schema="CRPDTA" ></table>  
+	</entity>	
+	<entity class="br.com.compliance.nfe.jde.domain.F40203">
+	    <table name="F40203" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC70">
+	    <table name="F55IJC70" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC71">
+	    <table name="F55IJC71" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC72">
+	    <table name="F55IJC72" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC74">
+	    <table name="F55IJC74" schema="CRPDTA" ></table>  
+	</entity>	
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC79">
+	    <table name="F55IJC79" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC7C">
+	    <table name="F55IJC7C" schema="CRPDTA" ></table>  
+	</entity>
+	<entity class="br.com.compliance.nfe.jde.domain.F55IJC60">
+	    <table name="F55IJC60" schema="CRPDTA" ></table>  
+	</entity>
+	
+	
+</entity-mappings>
