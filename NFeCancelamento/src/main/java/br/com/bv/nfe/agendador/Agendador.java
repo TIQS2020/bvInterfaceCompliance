@@ -1,5 +1,9 @@
 package br.com.bv.nfe.agendador;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -21,13 +25,20 @@ public class Agendador {
 	private static Scheduler schedulerCancelamento = null;
 
 	public static void inicia() throws Exception {
+		
+		InputStream input = new FileInputStream("c:/Java/resources/webservices.properties");
+		Properties properties = new Properties();
+		properties.load(input);
 
+		String intervaloCancelamentoProp = properties.getProperty("intervaloCancelamento").trim();
+		String cron = "0 0/"+intervaloCancelamentoProp+" * * * ?";
+		
 		jobKeyCancelamento = new JobKey("jobCancelamento", JobKey.DEFAULT_GROUP);
 
 		jobCancelamento = JobBuilder.newJob(CancelaNFe.class).withIdentity(jobKeyCancelamento).build();
 
 		triggerCancelamento = TriggerBuilder.newTrigger().withIdentity("triggerCancelamento", TriggerKey.DEFAULT_GROUP)
-				.withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")).build();
+				.withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
 
 		schedulerCancelamento = new StdSchedulerFactory().getScheduler();
 
