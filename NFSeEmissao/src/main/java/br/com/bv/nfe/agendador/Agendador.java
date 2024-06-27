@@ -1,5 +1,9 @@
 package br.com.bv.nfe.agendador;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -25,9 +29,16 @@ public class Agendador {
 		jobKeyEnvio = new JobKey("jobEnvio", JobKey.DEFAULT_GROUP);
 
 		jobEnvio = JobBuilder.newJob(EnvioNFe.class).withIdentity(jobKeyEnvio).build();
+		
+		InputStream input = new FileInputStream("c:/Java/resources/webservices.properties");
+		Properties properties = new Properties();
+		properties.load(input);
+
+		String intervaloSaidaProp = properties.getProperty("intervaloSaida").trim();
+		String cron = "0 0/"+intervaloSaidaProp+" * * * ?";
 
 		triggerEnvio = TriggerBuilder.newTrigger().withIdentity("triggerEnvio", TriggerKey.DEFAULT_GROUP)
-				.withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")).build();
+				.withSchedule(CronScheduleBuilder.cronSchedule(cron)).build();
 
 		schedulerEnvio = new StdSchedulerFactory().getScheduler();
 

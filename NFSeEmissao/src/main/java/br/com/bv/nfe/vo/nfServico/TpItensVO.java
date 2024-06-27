@@ -22,7 +22,8 @@ public class TpItensVO {
 		item.setNroItem(new NonNegativeInteger(f.getJCUKID().toString()));
 		item.setCodItemServ(f.getJCLITM());
 		if(montaDescricao) {
-			item.setDescricao(f.getJCAGEN());
+			//item.setDescricao(f.getJCAGEN());
+			item.setDescricao(f.getJCNOTTE().trim());
 		}else {
 			//item.setDescricao(f.getJCDSC1() + f.getJCDSC2());
 			item.setDescricao(f.getJCD200());
@@ -34,8 +35,8 @@ public class TpItensVO {
 		System.out.println("BCLF: " + f.getJCBCLF().replace(".", ""));
 		item.setCdListaServ(new BigInteger(f.getJCBCLF().replace(".", "")));
 		//if(ibgeVO.getIbgeList().contains(f.getJCCITY1().trim())) {
-		//item.setCodTribMunicipio(f.getJCB76SFCT().replace(".", ""));
-		item.setCodTribMunicipio(f.getJCB76SFCT());
+		item.setCodTribMunicipio(f.getJCB76SFCT().replace(".", ""));
+		//item.setCodTribMunicipio(f.getJCB76SFCT());
 //		}else {
 //			item.setCodTribMunicipio(f.getJCB76SFCT());
 //		}
@@ -44,7 +45,7 @@ public class TpItensVO {
 		item.setCidadeIbge(f.getJCCITY1());
 		item.setCodCta(f.getJCADDLCMT());
 		item.setCodCentroCusto(f.getJCC9MCU());
-		item.setCdTpServReinf(f.getJCG70CC03());
+		//item.setCdTpServReinf(f.getJCG70CC03());
 
 		if (f.getJCEV02() == null)
 			item.setDmIndCprb(BigInteger.ZERO);

@@ -85,7 +85,7 @@ public class NfServicoVO {
 				if("1".equalsIgnoreCase(f55ijc81.getJCEV08())) {
 					montaDescricao = true;
 				}else {
-					if(!"".contentEquals(f55ijc81.getJCAGEN().trim())) {
+					if(!"".equalsIgnoreCase(f55ijc81.getJCNOTTE().trim())) {
 						inforAdicArray = new TpInforAdic[1];										
 						TpInforAdic infoA = TpInforAdicVO.montaInforAdic(f55ijc81);
 						inforAdicArray[0] = infoA;	

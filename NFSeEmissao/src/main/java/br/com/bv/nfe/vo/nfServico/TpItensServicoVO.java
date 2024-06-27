@@ -26,7 +26,7 @@ public class TpItensServicoVO {
 		item.setCidadeIbge(it.getJCCITY1());
 		item.setCodCta(it.getJCADDLCMT());
 		item.setCodCentroCusto(it.getJCC9MCU());
-		item.setCdTpServReinf(it.getJCG70CC03());
+		//item.setCdTpServReinf(it.getJCG70CC03());
 		item.setDmIndCprb(new BigInteger(it.getJCEV02()));
 		return item;
 	}
