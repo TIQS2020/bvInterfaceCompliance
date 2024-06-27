@@ -212,6 +212,9 @@ public class F55IJC81 {
 	
 	/*modificacao 11/08/20*/
 	private String JCD200;
+	
+	/*modificação descrição do item 04/05/2022*/
+	private String JCNOTTE;
 
 	public String getJCBRNOP() {
 		return JCBRNOP;
@@ -1626,6 +1629,14 @@ public class F55IJC81 {
 		JCD200 = jCD200;
 	}
 
+	public String getJCNOTTE() {
+		return JCNOTTE;
+	}
+
+	public void setJCNOTTE(String jCNOTTE) {
+		JCNOTTE = jCNOTTE;
+	}
+
 	@Override
 	public String toString() {
 		return "F55IJC81 [id=" + id + ", JCBNNF=" + JCBNNF + ", JCBSER=" + JCBSER + ", JCN001=" + JCN001 + ", JCDCT="
@@ -1670,7 +1681,7 @@ public class F55IJC81 {
 				+ ", JCAN12=" + JCAN12 + ", JCAN08=" + JCAN08 + ", JCAN11=" + JCAN11 + ", JCAN13=" + JCAN13
 				+ ", JCAN09=" + JCAN09 + ", JCVT10=" + JCVT10 + ", JCVT12=" + JCVT12 + ", JCVT08=" + JCVT08
 				+ ", JCAGEN=" + JCAGEN + ", JC54RBDPW=" + JC54RBDPW + ", JCEV01=" + JCEV01 + ", JCEV08=" + JCEV08
-				+ ", JCD200=" + JCD200 + "]";
+				+ ", JCD200=" + JCD200 + ", JCNOTTE=" + JCNOTTE + "]";
 	}
 
 	
