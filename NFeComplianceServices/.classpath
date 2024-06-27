@@ -47,12 +47,5 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/axis.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/commons-discovery-0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/javax.wsdl_1.6.2.v201012040545.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/jaxrpc.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/saaj.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/bureauVeritas/NFeComplianceServices/NFeComplianceServices/src/main/resources/libs/javax.persistence-2.1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
