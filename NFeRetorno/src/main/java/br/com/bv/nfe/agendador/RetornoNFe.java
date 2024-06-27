@@ -27,8 +27,7 @@ public class RetornoNFe implements Job {
 		System.out.println("Job : " + jobName + " iniciado em: " + dateFormat.format(new Date()));
 
 		try {
-			InputStream input = new FileInputStream(AppConfig.getWEB_SERVICES_PATH());
-
+			InputStream input = new FileInputStream("c:/Java/resources/webservices.properties");
 			Properties properties = new Properties();
 			properties.load(input);
 
