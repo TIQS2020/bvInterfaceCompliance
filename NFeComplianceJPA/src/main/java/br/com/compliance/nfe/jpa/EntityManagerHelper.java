@@ -45,11 +45,18 @@ public class EntityManagerHelper {
 																													// para
 																													// schema
 		properties.put(PersistenceUnitProperties.JDBC_URL, AppConfig.getUrl());
+		/*
 		properties.put(PersistenceUnitProperties.JDBC_USER, AppConfig.getUser());
 		properties.put(PersistenceUnitProperties.JDBC_PASSWORD, AppConfig.getPassword());
+		*/
 		properties.put(PersistenceUnitProperties.JDBC_DRIVER, AppConfig.getDriver());
 		properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "FINE");
 		properties.put(PersistenceUnitProperties.LOGGING_FILE, AppConfig.getJpaLogginFile());
+		
+		/*Criação do esquema das tabelas*/
+		properties.put(PersistenceUnitProperties.DDL_GENERATION, PersistenceUnitProperties.DROP_AND_CREATE);
+        properties.put(PersistenceUnitProperties.DDL_GENERATION_MODE, PersistenceUnitProperties.DDL_SQL_SCRIPT_GENERATION);
+        properties.put(PersistenceUnitProperties.CREATE_JDBC_DDL_FILE, "schema.sql");
 
 		emfJDE = Persistence.createEntityManagerFactory("NFeComplianceJPA", properties);
 
