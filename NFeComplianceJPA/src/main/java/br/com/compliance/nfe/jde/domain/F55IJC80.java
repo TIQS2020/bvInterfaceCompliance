@@ -13,11 +13,11 @@ public class F55IJC80 {
 	@EmbeddedId
 	private F55IJC80Id id;
 
-	/* campos chave */
-	private Integer JCBNNF;
+	/* campos chave 	private Integer JCBNNF;
 	private String JCBSER;
 	private Integer JCN001;
-	private String JCDCT;
+	private String JCDCT;*/
+
 	/* chave */
 	private Integer JCBNF0;
 	private String JCBSR0;
@@ -178,6 +178,7 @@ public class F55IJC80 {
 	public F55IJC80() {
 	}
 
+	/*
 	public Integer getJCBNNF() {
 		return JCBNNF;
 	}
@@ -208,7 +209,7 @@ public class F55IJC80 {
 
 	public void setJCDCT(String jCDCT) {
 		JCDCT = jCDCT;
-	}
+	}*/
 
 	public Integer getJCBNF0() {
 		return JCBNF0;
@@ -1244,13 +1245,21 @@ public class F55IJC80 {
 		JCB76ERN = jCB76ERN;
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "[NOTA = " + JCBNNF + "]";
 	}
-
+*/
 	public String getJCAPTA() {
 		return JCAPTA;
+	}
+
+	public F55IJC80Id getId() {
+		return id;
+	}
+
+	public void setId(F55IJC80Id id) {
+		this.id = id;
 	}
 
 	public void setJCAPTA(String jCAPTA) {
