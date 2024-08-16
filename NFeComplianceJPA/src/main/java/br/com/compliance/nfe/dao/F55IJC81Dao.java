@@ -1,8 +1,10 @@
 package br.com.compliance.nfe.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.CacheStoreMode;
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,6 +14,7 @@ import javax.persistence.criteria.Root;
 
 import org.eclipse.persistence.config.QueryHints;
 
+import br.com.compliance.nfe.jdbc.JDBCException;
 import br.com.compliance.nfe.jde.domain.F55IJC80Id;
 import br.com.compliance.nfe.jde.domain.F55IJC81;
 import br.com.compliance.nfe.jpa.EntityManagerHelper;
@@ -69,4 +72,22 @@ public class F55IJC81Dao {
 
 	}
 
+	public void insertF55IJC81(F55IJC81 f) throws JDBCException, SQLException {
+
+		EntityManager manager = EntityManagerHelper.getEntityManager();
+
+		try {
+			manager.getTransaction().begin();
+			manager.persist(f);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (manager.getTransaction().isActive()) {
+				manager.getTransaction().rollback();
+			}
+		} finally {
+			manager.close();
+		}
+
+	}
 }
