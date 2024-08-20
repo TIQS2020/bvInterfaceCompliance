@@ -8,17 +8,15 @@ import javax.persistence.Entity;
 /*F55JC82 - IJC - NFe Mensagem*/
 @Entity
 public class F55IJC82 {
-	
+
 	@EmbeddedId
 	private F55IJC82Id id;
-	
-	private Integer JCBNNF;
-	private String JCBSER;
-	private Long JCN001;
-	private String JCDCT;
-	
-	private Integer JCSEQ;
-	private Integer JCLIN;
+	/*
+	 * INSERT TEST private Integer JCBNNF; private String JCBSER; private Long
+	 * JCN001; private String JCDCT;
+	 * 
+	 * private Integer JCSEQ; private Integer JCLIN;
+	 */
 	private String JCAPTA;
 	private String JCTORG;
 	private String JCUSER;
@@ -33,10 +31,22 @@ public class F55IJC82 {
 	private String JCURCD;
 	private String JCURC1;
 	private String JCURC2;
-	private String JCUKID;
-	
-	public F55IJC82(){}
 
+	/*
+	 * INSERT TEST private String JCUKID;
+	 */
+
+	public F55IJC82() {
+	}
+
+	public F55IJC82Id getId() {
+		return id;
+	}
+
+	public void setId(F55IJC82Id id) {
+		this.id = id;
+	}
+/*INSERT TEST
 	public Integer getJCBNNF() {
 		return JCBNNF;
 	}
@@ -84,7 +94,7 @@ public class F55IJC82 {
 	public void setJCLIN(Integer jCLIN) {
 		JCLIN = jCLIN;
 	}
-
+*/
 	public String getJCAPTA() {
 		return JCAPTA;
 	}
@@ -196,7 +206,7 @@ public class F55IJC82 {
 	public void setJCURC2(String jCURC2) {
 		JCURC2 = jCURC2;
 	}
-
+/*INSERT TEST
 	public String getJCUKID() {
 		return JCUKID;
 	}
@@ -204,9 +214,5 @@ public class F55IJC82 {
 	public void setJCUKID(String jCUKID) {
 		JCUKID = jCUKID;
 	}
-	
-	
-	
-	
-
+*/
 }

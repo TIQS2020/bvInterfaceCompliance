@@ -10,14 +10,16 @@ import javax.persistence.Entity;
 public class F55IJC84 {
 	@EmbeddedId
 	private F55IJC84Id id;
-	
+/*INSERT TEST
 	private Integer JCBNNF;
 	private String JCBSER;
 	private Long JCN001;
 	private String JCDCT;
-	
+*/
 	private String JCKY1;
-	private Integer JCIA01;
+/*INSERT TEST
+ * 	private Integer JCIA01;
+ */
 	private String JCEV02;
 	private String JCDQ01;
 	private String JCDQ02;
@@ -61,20 +63,29 @@ public class F55IJC84 {
 	private String JCURCD;
 	private String JCURC1;
 	private String JCURC2;
-	
-	/*novos campos 03/02/16*/
+
+	/* novos campos 03/02/16 */
 	private String JCWTXT;
 	private String JCAA10;
 	private Integer JCAN8;
-	
+
 	private String JCAAIL;
 	private String JCDESTIN;
-	
+
 	private String JCEMAL;
 	private String JCEV05;
-	
-	public F55IJC84(){}
 
+	public F55IJC84() {
+	}
+
+	public F55IJC84Id getId() {
+		return id;
+	}
+
+	public void setId(F55IJC84Id id) {
+		this.id = id;
+	}
+/*INSERT TEST
 	public Integer getJCBNNF() {
 		return JCBNNF;
 	}
@@ -106,7 +117,7 @@ public class F55IJC84 {
 	public void setJCDCT(String jCDCT) {
 		JCDCT = jCDCT;
 	}
-
+*/
 	public String getJCKY1() {
 		return JCKY1;
 	}
@@ -114,7 +125,7 @@ public class F55IJC84 {
 	public void setJCKY1(String jCKY1) {
 		JCKY1 = jCKY1;
 	}
-
+/*INSERT TEST
 	public Integer getJCIA01() {
 		return JCIA01;
 	}
@@ -122,7 +133,7 @@ public class F55IJC84 {
 	public void setJCIA01(Integer jCIA01) {
 		JCIA01 = jCIA01;
 	}
-
+*/
 	public String getJCEV02() {
 		return JCEV02;
 	}
@@ -505,8 +516,8 @@ public class F55IJC84 {
 
 	public void setJCDESTIN(String jCDESTIN) {
 		JCDESTIN = jCDESTIN;
-	}	
-	
+	}
+
 	public String getJCEMAL() {
 		return JCEMAL;
 	}
@@ -521,9 +532,6 @@ public class F55IJC84 {
 
 	public void setJCEV05(String jCEV05) {
 		JCEV05 = jCEV05;
-	}	
-	
-	
-	
+	}
 
 }

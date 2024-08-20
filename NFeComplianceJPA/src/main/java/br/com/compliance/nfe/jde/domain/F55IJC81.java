@@ -10,13 +10,14 @@ import javax.persistence.Entity;
 public class F55IJC81 {
 	@EmbeddedId
 	private F55IJC81Id id;
-
+/* INSERT TEST
 	private Integer JCBNNF;
 	private String JCBSER;
 	private Long JCN001;
 	private String JCDCT;
 
 	private Long JCUKID;
+	*/
 	private String JCSOS1;
 	private Integer JCBNF0;
 	private String JCBSR0;
@@ -223,7 +224,7 @@ public class F55IJC81 {
 
 	public F55IJC81() {
 	}
-
+/*INSERT TEST
 	public Integer getJCBNNF() {
 		return JCBNNF;
 	}
@@ -263,7 +264,7 @@ public class F55IJC81 {
 	public void setJCUKID(Long jCUKID) {
 		JCUKID = jCUKID;
 	}
-
+*/
 	public String getJCSOS1() {
 		return JCSOS1;
 	}
@@ -1625,7 +1626,7 @@ public class F55IJC81 {
 	public void setJCD200(String jCD200) {
 		JCD200 = jCD200;
 	}
-
+/*INSERT TEST
 	@Override
 	public String toString() {
 		return "F55IJC81 [id=" + id + ", JCBNNF=" + JCBNNF + ", JCBSER=" + JCBSER + ", JCN001=" + JCN001 + ", JCDCT="
@@ -1672,6 +1673,6 @@ public class F55IJC81 {
 				+ ", JCAGEN=" + JCAGEN + ", JC54RBDPW=" + JC54RBDPW + ", JCEV01=" + JCEV01 + ", JCEV08=" + JCEV08
 				+ ", JCD200=" + JCD200 + "]";
 	}
-
+*/
 	
 }

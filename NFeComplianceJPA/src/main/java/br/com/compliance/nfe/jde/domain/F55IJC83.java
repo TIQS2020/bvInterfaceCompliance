@@ -5,18 +5,19 @@ import java.math.BigDecimal;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
-/*F55JC83 - IJC - Vencimentos da Nota Fiscal Eletrônica*/
+/*F55JC83 - IJC - Vencimentos da Nota Fiscal Eletrï¿½nica*/
 @Entity
 public class F55IJC83 {
 	@EmbeddedId
 	private F55IJC83Id id;
-	
+/*INSERT TEST
 	private Integer JCBNNF;
 	private String JCBSER;
 	private Long JCN001;
 	private String JCDCT;
-	
+
 	private Integer JCNSP;
+	*/
 	private BigDecimal JCAEXP;
 	private String JCKI03;
 	private String JCCHAR;
@@ -39,9 +40,18 @@ public class F55IJC83 {
 	private String JCURC2;
 	private String JCDDJ;
 	private String JCCRPR;
-	
-	public F55IJC83(){}
 
+	public F55IJC83() {
+	}
+
+	public F55IJC83Id getId() {
+		return id;
+	}
+
+	public void setId(F55IJC83Id id) {
+		this.id = id;
+	}
+/*
 	public Integer getJCBNNF() {
 		return JCBNNF;
 	}
@@ -81,7 +91,7 @@ public class F55IJC83 {
 	public void setJCNSP(Integer jCNSP) {
 		JCNSP = jCNSP;
 	}
-
+*/
 	public BigDecimal getJCAEXP() {
 		return JCAEXP;
 	}
@@ -97,7 +107,6 @@ public class F55IJC83 {
 	public void setJCKI03(String jCKI03) {
 		JCKI03 = jCKI03;
 	}
-
 
 	public String getJCCHAR() {
 		return JCCHAR;
@@ -258,7 +267,5 @@ public class F55IJC83 {
 	public void setJCCRPR(String jCCRPR) {
 		JCCRPR = jCCRPR;
 	}
-	
-	
 
 }
