@@ -189,7 +189,7 @@ public class RetornoControle {
 								&& sbError.length() < 1500) {
 							sbError.append(s);
 							/* TODO: Gravar erro situacao 5 - lote rejeitado - no campo JCAPTA da 80 */
-							retornoVO.getHeader().setJCAPTA(sbError.toString());
+							retornoVO.getHeader().setJCAPTA(sbError.toString()); // TODO: Descrição erro da compliance pra jogar na tag de descricao no xml
 						}
 						log.info("+ Erro: " + s);
 					}
@@ -203,6 +203,8 @@ public class RetornoControle {
 			retornoVO.setF76b01te(f76b01te);
 			retornoVO.getHeader().setJCEV15(lote.getSituacaoLote().toString());
 
+			lote.getDescrSitLote(); // TODO: Descrição situacao da compliance pra jogar na tag de descricao no xml
+			
 			if (lote.getSituacaoLote().compareTo(new NonNegativeInteger("5")) == 0) {
 				retornoVO.getF76b01te().setFHB76EST("R");
 				atualizaStatusErro = true;
@@ -218,7 +220,8 @@ public class RetornoControle {
 				for (Dados d : lote.getDados()) {
 
 					retornoVO.getHeader().setJCA203(d.getSituacao().toString());
-
+					
+					d.getDescrSituacao(); // TODO: Descrição situacao da sefaz pra jogar na tag de descricao no xml
 					if (d.getSituacao().compareTo(new NonNegativeInteger("10")) == 0) {
 						retornoVO.getF76b01te().setFHB76EST("E");
 						atualizaStatusErro = true;

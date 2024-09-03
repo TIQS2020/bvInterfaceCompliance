@@ -11,20 +11,10 @@
 		<class>br.com.compliance.nfe.jde.domain.F55IJC80</class>
 		<class>br.com.compliance.nfe.jde.domain.F55IJC80Id</class>
 		<class>br.com.compliance.nfe.jde.domain.F55IJC81</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC81Id</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC82</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC82Id</class>
+		<class>br.com.compliance.nfe.jde.domain.F55IJC81Id</class>		
 		<class>br.com.compliance.nfe.jde.domain.F55IJC83</class>
 		<class>br.com.compliance.nfe.jde.domain.F55IJC83Id</class>
 		<class>br.com.compliance.nfe.jde.domain.F55IJC84</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC84Id</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC85</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC85Id</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC86</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC86Id</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC87</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC87Id</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC88</class>
-		<class>br.com.compliance.nfe.jde.domain.F55IJC88Id</class>		
+		<class>br.com.compliance.nfe.jde.domain.F55IJC84Id</class>				
 	</persistence-unit>
 </persistence>

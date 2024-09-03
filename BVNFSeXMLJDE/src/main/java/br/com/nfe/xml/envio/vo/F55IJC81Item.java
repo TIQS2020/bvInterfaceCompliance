@@ -2,13 +2,9 @@ package br.com.nfe.xml.envio.vo;
 
 import java.math.BigDecimal;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 public class F55IJC81Item {
 	
-	private int id;
 
-	private Long JCUKID;
 	private String JCSOS1;
 	private Integer JCBNF0;
 	private String JCBSR0;
@@ -211,32 +207,12 @@ public class F55IJC81Item {
 
 	public void setJCBRNOP(String jCBRNOP) {
 		JCBRNOP = jCBRNOP;
-	}
-
-	
+	}	
 	
 	public F55IJC81Item() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	
-	
-	@XmlAttribute(name = "id")
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Long getJCUKID() {
-		return JCUKID;
-	}
-
-	public void setJCUKID(Long jCUKID) {
-		JCUKID = jCUKID;
-	}
+	}	
 
 	public String getJCSOS1() {
 		return JCSOS1;
@@ -1592,50 +1568,6 @@ public class F55IJC81Item {
 		JCD200 = jCD200;
 	}
 
-	@Override
-	public String toString() {
-		return "F55IJC81 [JCUKID=" + JCUKID + ", JCSOS1=" + JCSOS1 + ", JCBNF0=" + JCBNF0 + ", JCBSR0=" + JCBSR0
-				+ ", JCN002=" + JCN002 + ", JCBNFS=" + JCBNFS + ", JCOCTO=" + JCOCTO + ", JCMATC=" + JCMATC
-				+ ", JCDOCO=" + JCDOCO + ", JCPDCT=" + JCPDCT + ", JCKCOO=" + JCKCOO + ", JCSFXO=" + JCSFXO
-				+ ", JCLNID=" + JCLNID + ", JCNLIN=" + JCNLIN + ", JCDOC=" + JCDOC + ", JCDCTO=" + JCDCTO + ", JCCO="
-				+ JCCO + ", JCFCO=" + JCFCO + ", JCITM=" + JCITM + ", JCLITM=" + JCLITM + ", JCAITM=" + JCAITM
-				+ ", JCCITM=" + JCCITM + ", JCMCU=" + JCMCU + ", JCLOCN=" + JCLOCN + ", JCLOTN=" + JCLOTN + ", JCDSC1="
-				+ JCDSC1 + ", JCDSC2=" + JCDSC2 + ", JCLNTY=" + JCLNTY + ", JCUOM=" + JCUOM + ", JCUORG=" + JCUORG
-				+ ", JCUOM3=" + JCUOM3 + ", JCUOM4=" + JCUOM4 + ", JCUPRC=" + JCUPRC + ", JCAEXP=" + JCAEXP
-				+ ", JCBDES=" + JCBDES + ", JCGLC=" + JCGLC + ", JCSHAN=" + JCSHAN + ", JCAN8=" + JCAN8 + ", JCBCGT="
-				+ JCBCGT + ", JCBCPT=" + JCBCPT + ", JCSHST=" + JCSHST + ", JCSHZP=" + JCSHZP + ", JCBSFH=" + JCBSFH
-				+ ", JCAN8V=" + JCAN8V + ", JCBCGF=" + JCBCGF + ", JCBCPF=" + JCBCPF + ", JCADDS=" + JCADDS
-				+ ", JCBNOP=" + JCBNOP + ", JCBSOP=" + JCBSOP + ", JCBDIP=" + JCBDIP + ", JCBCLF=" + JCBCLF
-				+ ", JCBCTF=" + JCBCTF + ", JCBIST=" + JCBIST + ", JCBORI=" + JCBORI + ", JCBCFC=" + JCBCFC
-				+ ", JCBSTT=" + JCBSTT + ", JCBFRT=" + JCBFRT + ", JCBSEG=" + JCBSEG + ", JCBDFN=" + JCBDFN
-				+ ", JCBICM=" + JCBICM + ", JCTXR1=" + JCTXR1 + ", JCBBCL=" + JCBBCL + ", JCBBIR=" + JCBBIR
-				+ ", JCBVIS=" + JCBVIS + ", JCBBIS=" + JCBBIS + ", JCBREP=" + JCBREP + ", JCBDIZ=" + JCBDIZ
-				+ ", JCBICP=" + JCBICP + ", JCBFII=" + JCBFII + ", JCBIPR=" + JCBIPR + ", JCBIPI=" + JCBIPI
-				+ ", JCTXR2=" + JCTXR2 + ", JCBBTP=" + JCBBTP + ", JCBFIP=" + JCBFIP + ", JCBISS=" + JCBISS
-				+ ", JCTXR3=" + JCTXR3 + ", JCBBCS=" + JCBBCS + ", JCBIRT=" + JCBIRT + ", JCTXR4=" + JCTXR4
-				+ ", JCBBCR=" + JCBBCR + ", JCBIIT=" + JCBIIT + ", JCTXR5=" + JCTXR5 + ", JCBBCI=" + JCBBCI + ", JCANI="
-				+ JCANI + ", JCAID=" + JCAID + ", JCOMCU=" + JCOMCU + ", JCOBJ=" + JCOBJ + ", JCSUB=" + JCSUB
-				+ ", JCSBLT=" + JCSBLT + ", JCSBL=" + JCSBL + ", JCBINM=" + JCBINM + ", JCISSU=" + JCISSU + ", JCBNIV="
-				+ JCBNIV + ", JCPGNO=" + JCPGNO + ", JCNXTR=" + JCNXTR + ", JCLTTR=" + JCLTTR + ", JCUSER=" + JCUSER
-				+ ", JCPID=" + JCPID + ", JCJOBN=" + JCJOBN + ", JCUPMJ=" + JCUPMJ + ", JCTDAY=" + JCTDAY + ", JCCRCD="
-				+ JCCRCD + ", JCFTR=" + JCFTR + ", JCF1T=" + JCF1T + ", JCF2A=" + JCF2A + ", JCF2T=" + JCF2T
-				+ ", JCUSB1=" + JCUSB1 + ", JCFLD3=" + JCFLD3 + ", JCFLD4=" + JCFLD4 + ", JCURRF=" + JCURRF
-				+ ", JCURAB=" + JCURAB + ", JCURAT=" + JCURAT + ", JCURDT=" + JCURDT + ", JCURCD=" + JCURCD
-				+ ", JCURC1=" + JCURC1 + ", JCURC2=" + JCURC2 + ", JCBRNOP=" + JCBRNOP + ", JCAN01=" + JCAN01
-				+ ", JCAN02=" + JCAN02 + ", JCAN03=" + JCAN03 + ", JCVT01=" + JCVT01 + ", JCVT02=" + JCVT02
-				+ ", JCAA05=" + JCAA05 + ", JCPP01=" + JCPP01 + ", JCDL01=" + JCDL01 + ", JCSGTXT=" + JCSGTXT
-				+ ", JCVSTTR=" + JCVSTTR + ", JCAG1=" + JCAG1 + ", JCAG2=" + JCAG2 + ", JCAAMT1=" + JCAAMT1
-				+ ", JCAPCD=" + JCAPCD + ", JCAA10=" + JCAA10 + ", JCLCNF=" + JCLCNF + ", JCB76SFCT=" + JCB76SFCT
-				+ ", JCCITY1=" + JCCITY1 + ", JCADDLCMT=" + JCADDLCMT + ", JCC9MCU=" + JCC9MCU + ", JCG70CC03="
-				+ JCG70CC03 + ", JCEV02=" + JCEV02 + ", JCA120=" + JCA120 + ", JCEV16=" + JCEV16 + ", JCPEID=" + JCPEID
-				+ ", JCB76APID=" + JCB76APID + ", JCAPDO=" + JCAPDO + ", JC74UCR=" + JC74UCR + ", JCEV24=" + JCEV24
-				+ ", JCEV23=" + JCEV23 + ", JCEV22=" + JCEV22 + ", JCEV21=" + JCEV21 + ", JCEV20=" + JCEV20
-				+ ", JCEV25=" + JCEV25 + ", JCAN04=" + JCAN04 + ", JCAN05=" + JCAN05 + ", JCAN06=" + JCAN06
-				+ ", JCAN07=" + JCAN07 + ", JCVT04=" + JCVT04 + ", JCVT06=" + JCVT06 + ", JCAN10=" + JCAN10
-				+ ", JCAN12=" + JCAN12 + ", JCAN08=" + JCAN08 + ", JCAN11=" + JCAN11 + ", JCAN13=" + JCAN13
-				+ ", JCAN09=" + JCAN09 + ", JCVT10=" + JCVT10 + ", JCVT12=" + JCVT12 + ", JCVT08=" + JCVT08
-				+ ", JCAGEN=" + JCAGEN + ", JC54RBDPW=" + JC54RBDPW + ", JCEV01=" + JCEV01 + ", JCEV08=" + JCEV08
-				+ ", JCD200=" + JCD200 + "]";
-	}
+	
 	
 }

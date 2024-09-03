@@ -1,33 +1,44 @@
 package br.com.nfe.file;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.FileHandler;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import br.com.nfe.xml.envio.XmlFileEnvioRoot;
 
-public class XMLTransformation {
+public class XMLTransformation<T> {
 
-    private static final Logger LOGGER = Logger.getLogger(XMLTransformation.class.getName());
+	private final Class<T> type;
 
-    public static void setupLogger() {
-        try {
-            FileHandler fileHandler = new FileHandler("app.log", true);
-            fileHandler.setFormatter(new SimpleFormatter());
-            LOGGER.addHandler(fileHandler);
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao configurar o logger", e);
-        }
+    public XMLTransformation(Class<T> type) {
+        this.type = type;
     }
 
-    public static XmlFileEnvioRoot trasnformXmlToVo(File xmlFile, Class<?> clazz) {
+    public String toXml(T object) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(type);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        StringWriter sw = new StringWriter();
+        marshaller.marshal(object, sw);
+        return sw.toString();
+    }
+
+    public T fromXml(File xmlFile) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(type);
+        Unmarshaller unmarshaller = context.createUnmarshaller();  
+        return (T)unmarshaller.unmarshal(xmlFile);        
+    }
+
+    
+    /*
+    public static XmlFileEnvioRoot transformXmlToVo(File xmlFile, Class<?> clazz) {
         try {
             
         	JAXBContext contexto = JAXBContext.newInstance(clazz);
@@ -39,6 +50,6 @@ public class XMLTransformation {
             return null;
         }
 		
-    }
+    }*/
 
 }

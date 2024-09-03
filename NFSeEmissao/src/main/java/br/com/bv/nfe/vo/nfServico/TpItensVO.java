@@ -19,7 +19,7 @@ public class TpItensVO {
 		TpItens item = new TpItens();
 
 		item.setNroItem(new NonNegativeInteger(String.valueOf(i)));
-		item.setNroItem(new NonNegativeInteger(f.getJCUKID().toString()));
+		item.setNroItem(new NonNegativeInteger(f.getId().getJCUKID().toString()));
 		item.setCodItemServ(f.getJCLITM());
 		if(montaDescricao) {
 			item.setDescricao(f.getJCAGEN());

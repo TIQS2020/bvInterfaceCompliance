@@ -16,9 +16,7 @@ import br.com.compliance.nfe.jde.domain.F55IJC02;
 import br.com.compliance.nfe.jde.domain.F55IJC81;
 import br.com.compliance.nfe.jde.domain.F55IJC83;
 import br.com.compliance.nfe.jde.domain.F55IJC84;
-import br.com.compliance.nfe.jde.domain.F55IJC86;
 import br.com.compliance.nfe.util.DateUtil;
-import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfMercantil.TpNFRef;
 import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.NfServicos;
 import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpDuplicatas;
 import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpFatura;
@@ -50,7 +48,7 @@ public class NfServicoVO {
 		//boolean exportacao = false;
 		String cnae84 = "";
 		for (F55IJC84 part : e.getParticipanteNFeList()) {
-			if (part.getJCIA01() == 1) {
+			if (part.getId().getJCIA01() == 1) {
 				participante = TpParticipanteVO.montaTpParticipante(part, e.getHeader().getJCADDS());
 				cnae84 = part.getJCAA10();
 			}
@@ -61,6 +59,7 @@ public class NfServicoVO {
 			*/
 		}
 
+		/*
 		List<TpNFRef> nfRefList = null;
 		if (e.getReferenciaNFeList() != null) {
 			nfRefList = new ArrayList<TpNFRef>();
@@ -68,7 +67,7 @@ public class NfServicoVO {
 				TpNFRef n = TpNFRefVO.montaNfRef(nfr, e.getHeader());
 				nfRefList.add(n);
 			}
-		}		
+		}*/		
 		
 		TpInforAdic[] inforAdicArray = null;
 		
@@ -129,7 +128,7 @@ public class NfServicoVO {
 		List<TpDuplicatas> dList = new ArrayList<TpDuplicatas>();
 		int nroFatura = 0;
 		for(F55IJC83 venc : e.getVencimentoNFeList()) {
-			nroFatura = venc.getJCNSP();
+			nroFatura = venc.getId().getJCNSP();
 			TpDuplicatas d = new TpDuplicatas();
 			d.setDtVencto(dateUtil.getDateFormated((dateUtil.julianToRegular(venc.getJCDDJ()))));
 			d.setNroParcela(venc.getJCKI03());
@@ -157,8 +156,8 @@ public class NfServicoVO {
 		nota.setDmIndEmit(new NonNegativeInteger(e.getHeader().getJCEV02().toString()));
 		nota.setCodPart(e.getHeader().getJCAN8().toString());
 		nota.setCodigoModeloFiscal("99");
-		nota.setSerie(String.valueOf(Integer.parseInt(e.getHeader().getJCBSER())));
-		nota.setNroNf(new NonNegativeInteger(e.getHeader().getJCBNNF().toString()));
+		nota.setSerie(String.valueOf(Integer.parseInt(e.getHeader().getId().getJCBSER())));
+		nota.setNroNf(new NonNegativeInteger(e.getHeader().getId().getJCBNNF().toString()));
 		nota.setDtEmiss(dateUtil.getDateFormated((dateUtil.julianToRegular(e.getHeader().getJCISSU()))));
 		if(!"".equalsIgnoreCase(e.getHeader().getJCADSD()) && !"0".equalsIgnoreCase(e.getHeader().getJCADSD())) {
 			nota.setDtSaiEnt(dateUtil.getDateFormated((dateUtil.julianToRegular(e.getHeader().getJCADSD()))));

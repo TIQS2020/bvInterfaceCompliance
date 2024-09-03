@@ -33,7 +33,7 @@ public class ItemVO {
 			Item item = new Item();
 
 			item.setCpfCnpj(cpfCnpj);
-			item.setNumeroItem(f.getJCUKID());
+			item.setNumeroItem(f.getId().getJCUKID());
 			item.setCodigoItem(f.getJCLITM());
 			item.setSiglaUnidade(f.getJCUOM());
 			// item.setIndicacaoOrigem(new BigInteger(f.getJCBORI()));

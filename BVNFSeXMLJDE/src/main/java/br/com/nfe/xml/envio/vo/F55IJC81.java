@@ -1,5 +1,6 @@
 package br.com.nfe.xml.envio.vo;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
 public class F55IJC81 {
@@ -11,6 +12,7 @@ public class F55IJC81 {
 		// TODO Auto-generated constructor stub
 	}
 
+	@XmlElement(name = "ITEM")
 	public List<F55IJC81Item> getItem() {
 		return item;
 	}

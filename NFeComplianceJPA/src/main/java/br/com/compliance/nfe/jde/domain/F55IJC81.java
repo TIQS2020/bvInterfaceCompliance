@@ -10,14 +10,7 @@ import javax.persistence.Entity;
 public class F55IJC81 {
 	@EmbeddedId
 	private F55IJC81Id id;
-/* INSERT TEST
-	private Integer JCBNNF;
-	private String JCBSER;
-	private Long JCN001;
-	private String JCDCT;
 
-	private Long JCUKID;
-	*/
 	private String JCSOS1;
 	private Integer JCBNF0;
 	private String JCBSR0;
@@ -224,6 +217,211 @@ public class F55IJC81 {
 
 	public F55IJC81() {
 	}
+	
+	
+	
+public F55IJC81(F55IJC81Id id, String jCSOS1, Integer jCBNF0, String jCBSR0, Long jCN002, String jCBNFS,
+			String jCOCTO, String jCMATC, Long jCDOCO, String jCPDCT, String jCKCOO, String jCSFXO, Integer jCLNID,
+			Integer jCNLIN, Integer jCDOC, String jCDCTO, String jCCO, String jCFCO, Long jCITM, String jCLITM,
+			String jCAITM, String jCCITM, String jCMCU, String jCLOCN, String jCLOTN, String jCDSC1, String jCDSC2,
+			String jCLNTY, String jCUOM, BigDecimal jCUORG, String jCUOM3, String jCUOM4, BigDecimal jCUPRC,
+			BigDecimal jCAEXP, BigDecimal jCBDES, String jCGLC, Long jCSHAN, Long jCAN8, String jCBCGT, String jCBCPT,
+			String jCSHST, String jCSHZP, Long jCBSFH, Long jCAN8V, String jCBCGF, String jCBCPF, String jCADDS,
+			Integer jCBNOP, String jCBSOP, String jCBDIP, String jCBCLF, String jCBCTF, String jCBIST, String jCBORI,
+			String jCBCFC, String jCBSTT, BigDecimal jCBFRT, BigDecimal jCBSEG, BigDecimal jCBDFN, BigDecimal jCBICM,
+			BigDecimal jCTXR1, BigDecimal jCBBCL, BigDecimal jCBBIR, BigDecimal jCBVIS, BigDecimal jCBBIS,
+			BigDecimal jCBREP, BigDecimal jCBDIZ, BigDecimal jCBICP, String jCBFII, BigDecimal jCBIPR,
+			BigDecimal jCBIPI, BigDecimal jCTXR2, BigDecimal jCBBTP, String jCBFIP, BigDecimal jCBISS,
+			BigDecimal jCTXR3, BigDecimal jCBBCS, BigDecimal jCBIRT, BigDecimal jCTXR4, BigDecimal jCBBCR,
+			BigDecimal jCBIIT, BigDecimal jCTXR5, BigDecimal jCBBCI, String jCANI, String jCAID, String jCOMCU,
+			String jCOBJ, String jCSUB, String jCSBLT, String jCSBL, String jCBINM, String jCISSU, Integer jCBNIV,
+			Integer jCPGNO, String jCNXTR, String jCLTTR, String jCUSER, String jCPID, String jCJOBN, String jCUPMJ,
+			Integer jCTDAY, String jCCRCD, BigDecimal jCFTR, String jCF1T, BigDecimal jCF2A, String jCF2T,
+			String jCUSB1, String jCFLD3, String jCFLD4, String jCURRF, Long jCURAB, BigDecimal jCURAT, String jCURDT,
+			String jCURCD, String jCURC1, String jCURC2, String jCBRNOP, BigDecimal jCAN01, BigDecimal jCAN02,
+			BigDecimal jCAN03, BigDecimal jCVT01, BigDecimal jCVT02, String jCAA05, String jCPP01, String jCDL01,
+			String jCSGTXT, BigDecimal jCVSTTR, BigDecimal jCAG1, BigDecimal jCAG2, BigDecimal jCAAMT1,
+			BigDecimal jCAPCD, String jCAA10, String jCLCNF, String jCB76SFCT, String jCCITY1, String jCADDLCMT,
+			String jCC9MCU, String jCG70CC03, String jCEV02, String jCA120, String jCEV16, String jCPEID,
+			String jCB76APID, String jCAPDO, String jC74UCR, String jCEV24, String jCEV23, String jCEV22, String jCEV21,
+			String jCEV20, String jCEV25, BigDecimal jCAN04, BigDecimal jCAN05, BigDecimal jCAN06, BigDecimal jCAN07,
+			BigDecimal jCVT04, BigDecimal jCVT06, BigDecimal jCAN10, BigDecimal jCAN12, BigDecimal jCAN08,
+			BigDecimal jCAN11, BigDecimal jCAN13, BigDecimal jCAN09, BigDecimal jCVT10, BigDecimal jCVT12,
+			BigDecimal jCVT08, String jCAGEN, String jC54RBDPW, String jCEV01, String jCEV08, String jCD200) {
+		super();
+		this.id = id;
+		JCSOS1 = jCSOS1;
+		JCBNF0 = jCBNF0;
+		JCBSR0 = jCBSR0;
+		JCN002 = jCN002;
+		JCBNFS = jCBNFS;
+		JCOCTO = jCOCTO;
+		JCMATC = jCMATC;
+		JCDOCO = jCDOCO;
+		JCPDCT = jCPDCT;
+		JCKCOO = jCKCOO;
+		JCSFXO = jCSFXO;
+		JCLNID = jCLNID;
+		JCNLIN = jCNLIN;
+		JCDOC = jCDOC;
+		JCDCTO = jCDCTO;
+		JCCO = jCCO;
+		JCFCO = jCFCO;
+		JCITM = jCITM;
+		JCLITM = jCLITM;
+		JCAITM = jCAITM;
+		JCCITM = jCCITM;
+		JCMCU = jCMCU;
+		JCLOCN = jCLOCN;
+		JCLOTN = jCLOTN;
+		JCDSC1 = jCDSC1;
+		JCDSC2 = jCDSC2;
+		JCLNTY = jCLNTY;
+		JCUOM = jCUOM;
+		JCUORG = jCUORG;
+		JCUOM3 = jCUOM3;
+		JCUOM4 = jCUOM4;
+		JCUPRC = jCUPRC;
+		JCAEXP = jCAEXP;
+		JCBDES = jCBDES;
+		JCGLC = jCGLC;
+		JCSHAN = jCSHAN;
+		JCAN8 = jCAN8;
+		JCBCGT = jCBCGT;
+		JCBCPT = jCBCPT;
+		JCSHST = jCSHST;
+		JCSHZP = jCSHZP;
+		JCBSFH = jCBSFH;
+		JCAN8V = jCAN8V;
+		JCBCGF = jCBCGF;
+		JCBCPF = jCBCPF;
+		JCADDS = jCADDS;
+		JCBNOP = jCBNOP;
+		JCBSOP = jCBSOP;
+		JCBDIP = jCBDIP;
+		JCBCLF = jCBCLF;
+		JCBCTF = jCBCTF;
+		JCBIST = jCBIST;
+		JCBORI = jCBORI;
+		JCBCFC = jCBCFC;
+		JCBSTT = jCBSTT;
+		JCBFRT = jCBFRT;
+		JCBSEG = jCBSEG;
+		JCBDFN = jCBDFN;
+		JCBICM = jCBICM;
+		JCTXR1 = jCTXR1;
+		JCBBCL = jCBBCL;
+		JCBBIR = jCBBIR;
+		JCBVIS = jCBVIS;
+		JCBBIS = jCBBIS;
+		JCBREP = jCBREP;
+		JCBDIZ = jCBDIZ;
+		JCBICP = jCBICP;
+		JCBFII = jCBFII;
+		JCBIPR = jCBIPR;
+		JCBIPI = jCBIPI;
+		JCTXR2 = jCTXR2;
+		JCBBTP = jCBBTP;
+		JCBFIP = jCBFIP;
+		JCBISS = jCBISS;
+		JCTXR3 = jCTXR3;
+		JCBBCS = jCBBCS;
+		JCBIRT = jCBIRT;
+		JCTXR4 = jCTXR4;
+		JCBBCR = jCBBCR;
+		JCBIIT = jCBIIT;
+		JCTXR5 = jCTXR5;
+		JCBBCI = jCBBCI;
+		JCANI = jCANI;
+		JCAID = jCAID;
+		JCOMCU = jCOMCU;
+		JCOBJ = jCOBJ;
+		JCSUB = jCSUB;
+		JCSBLT = jCSBLT;
+		JCSBL = jCSBL;
+		JCBINM = jCBINM;
+		JCISSU = jCISSU;
+		JCBNIV = jCBNIV;
+		JCPGNO = jCPGNO;
+		JCNXTR = jCNXTR;
+		JCLTTR = jCLTTR;
+		JCUSER = jCUSER;
+		JCPID = jCPID;
+		JCJOBN = jCJOBN;
+		JCUPMJ = jCUPMJ;
+		JCTDAY = jCTDAY;
+		JCCRCD = jCCRCD;
+		JCFTR = jCFTR;
+		JCF1T = jCF1T;
+		JCF2A = jCF2A;
+		JCF2T = jCF2T;
+		JCUSB1 = jCUSB1;
+		JCFLD3 = jCFLD3;
+		JCFLD4 = jCFLD4;
+		JCURRF = jCURRF;
+		JCURAB = jCURAB;
+		JCURAT = jCURAT;
+		JCURDT = jCURDT;
+		JCURCD = jCURCD;
+		JCURC1 = jCURC1;
+		JCURC2 = jCURC2;
+		JCBRNOP = jCBRNOP;
+		JCAN01 = jCAN01;
+		JCAN02 = jCAN02;
+		JCAN03 = jCAN03;
+		JCVT01 = jCVT01;
+		JCVT02 = jCVT02;
+		JCAA05 = jCAA05;
+		JCPP01 = jCPP01;
+		JCDL01 = jCDL01;
+		JCSGTXT = jCSGTXT;
+		JCVSTTR = jCVSTTR;
+		JCAG1 = jCAG1;
+		JCAG2 = jCAG2;
+		JCAAMT1 = jCAAMT1;
+		JCAPCD = jCAPCD;
+		JCAA10 = jCAA10;
+		JCLCNF = jCLCNF;
+		JCB76SFCT = jCB76SFCT;
+		JCCITY1 = jCCITY1;
+		JCADDLCMT = jCADDLCMT;
+		JCC9MCU = jCC9MCU;
+		JCG70CC03 = jCG70CC03;
+		JCEV02 = jCEV02;
+		JCA120 = jCA120;
+		JCEV16 = jCEV16;
+		JCPEID = jCPEID;
+		JCB76APID = jCB76APID;
+		JCAPDO = jCAPDO;
+		JC74UCR = jC74UCR;
+		JCEV24 = jCEV24;
+		JCEV23 = jCEV23;
+		JCEV22 = jCEV22;
+		JCEV21 = jCEV21;
+		JCEV20 = jCEV20;
+		JCEV25 = jCEV25;
+		JCAN04 = jCAN04;
+		JCAN05 = jCAN05;
+		JCAN06 = jCAN06;
+		JCAN07 = jCAN07;
+		JCVT04 = jCVT04;
+		JCVT06 = jCVT06;
+		JCAN10 = jCAN10;
+		JCAN12 = jCAN12;
+		JCAN08 = jCAN08;
+		JCAN11 = jCAN11;
+		JCAN13 = jCAN13;
+		JCAN09 = jCAN09;
+		JCVT10 = jCVT10;
+		JCVT12 = jCVT12;
+		JCVT08 = jCVT08;
+		JCAGEN = jCAGEN;
+		JC54RBDPW = jC54RBDPW;
+		JCEV01 = jCEV01;
+		JCEV08 = jCEV08;
+		JCD200 = jCD200;
+	}
+
 /*INSERT TEST
 	public Integer getJCBNNF() {
 		return JCBNNF;

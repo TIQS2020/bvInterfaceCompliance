@@ -3,7 +3,7 @@ package br.com.nfe.xml.envio.vo;
 import java.math.BigDecimal;
 
 public class F55IJC80 {
-	
+
 	/* campos chave */
 	private Integer JCBNNF;
 	private String JCBSER;
@@ -146,15 +146,23 @@ public class F55IJC80 {
 
 	private String JCADSD;
 	private String JCCDCID;
-	private String JCA202;	
+	private String JCA202;
 	private String JCLEG;
 	private String JCBISC;
 	private String JCERN;
 	private String JCATRD;
-	
-	/*modificacao 16-03-20*/
-	private String JCB76ERN;	
-	
+
+	/* modificacao 16-03-20 */
+	private String JCB76ERN;
+
+	/* Caampo de mensagem de lote rejeitado */
+	private String JCAPTA;
+
+	public F55IJC80() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public F55IJC80(Integer jCBNNF, String jCBSER, Integer jCN001, String jCDCT, Integer jCBNF0, String jCBSR0,
 			Integer jCN002, String jCBNFS, String jCOCTO, String jCMCU, String jCCO, String jCFCO, Integer jCSHAN,
 			Integer jCAN8, String jCBCGT, String jCBCPT, String jCSHST, String jCSHZP, String jCVR01, Integer jCBSFH,
@@ -313,20 +321,6 @@ public class F55IJC80 {
 		JCATRD = jCATRD;
 		JCB76ERN = jCB76ERN;
 		JCAPTA = jCAPTA;
-	}
-
-	/*Caampo de mensagem de lote rejeitado*/
-	private String JCAPTA;
-
-	public String getJCA201() {
-		return JCA201;
-	}
-
-	public void setJCA201(String jCA201) {
-		JCA201 = jCA201;
-	}
-
-	public F55IJC80() {
 	}
 
 	public Integer getJCBNNF() {
@@ -1201,6 +1195,14 @@ public class F55IJC80 {
 		JCID1 = jCID1;
 	}
 
+	public String getJCA201() {
+		return JCA201;
+	}
+
+	public void setJCA201(String jCA201) {
+		JCA201 = jCA201;
+	}
+
 	public BigDecimal getJCAN01() {
 		return JCAN01;
 	}
@@ -1241,6 +1243,14 @@ public class F55IJC80 {
 		JCAA07 = jCAA07;
 	}
 
+	public String getJCEV14() {
+		return JCEV14;
+	}
+
+	public void setJCEV14(String jCEV14) {
+		JCEV14 = jCEV14;
+	}
+
 	public String getJCEV15() {
 		return JCEV15;
 	}
@@ -1256,7 +1266,7 @@ public class F55IJC80 {
 	public void setJCEV16(String jCEV16) {
 		JCEV16 = jCEV16;
 	}
-	
+
 	public String getJCEV17() {
 		return JCEV17;
 	}
@@ -1279,14 +1289,6 @@ public class F55IJC80 {
 
 	public void setJCBRNFDE(Integer jCBRNFDE) {
 		JCBRNFDE = jCBRNFDE;
-	}
-
-	public String getJCEV14() {
-		return JCEV14;
-	}
-
-	public void setJCEV14(String jCEV14) {
-		JCEV14 = jCEV14;
 	}
 
 	public Integer getJCCAND() {
@@ -1352,7 +1354,7 @@ public class F55IJC80 {
 	public void setJCA202(String jCA202) {
 		JCA202 = jCA202;
 	}
-	
+
 	public String getJCLEG() {
 		return JCLEG;
 	}
@@ -1377,27 +1379,20 @@ public class F55IJC80 {
 		JCERN = jCERN;
 	}
 
-	
-
 	public String getJCATRD() {
 		return JCATRD;
 	}
 
 	public void setJCATRD(String jCATRD) {
 		JCATRD = jCATRD;
-	}	
-	
+	}
+
 	public String getJCB76ERN() {
 		return JCB76ERN;
 	}
 
 	public void setJCB76ERN(String jCB76ERN) {
 		JCB76ERN = jCB76ERN;
-	}
-
-	@Override
-	public String toString() {
-		return "[NOTA = " + JCBNNF + "]";
 	}
 
 	public String getJCAPTA() {
@@ -1407,6 +1402,5 @@ public class F55IJC80 {
 	public void setJCAPTA(String jCAPTA) {
 		JCAPTA = jCAPTA;
 	}
-	
-	
+
 }
