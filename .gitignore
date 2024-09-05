@@ -1,4 +1,11 @@
 /target/
+C:/dev/bureauVeritas/workspace/NFSeRetornoServico/.classpath
+C:/dev/bureauVeritas/workspace/NFSeRetornoServico/.settings/
+C:/dev/bureauVeritas/workspace/NFSeRetornoServico/.target/
+C:/dev/bureauVeritas/workspace/ManeNFeRetornoEntrada/.target/
+C:/dev/bureauVeritas/workspace/NFeCancelamento/.target/
+
+
 
 ##############################
 ## Java
@@ -43,3 +50,7 @@ tmp/
 local.properties
 .loadpath
 .factorypath
+/.idea/.gitignore
+/ManeNFeRetornoEntrada/target
+/ManeNFeRetornoEntrada/.settings
+/NFSeEmissao/.settings

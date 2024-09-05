@@ -60,6 +60,36 @@ public class F55IJC80Dao {
 		return listF55IJC80;
 	}
 
+	public List<F55IJC80> getF55IJC80byId(F55IJC80Id id) {
+
+		CriteriaBuilder cb = EntityManagerHelper.getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<F55IJC80> cQuery = cb.createQuery(F55IJC80.class);
+		Root<F55IJC80> cabecalho = cQuery.from(F55IJC80.class);
+
+		Expression<F55IJC80> eJcbnnf = cabecalho.get("JCBNNF");
+		Expression<F55IJC80> eJcbser = cabecalho.get("JCBSER");
+		Expression<F55IJC80> eJcn001 = cabecalho.get("JCN001");
+		Expression<F55IJC80> eJcdct = cabecalho.get("JCDCT");
+
+		Predicate pJcbnnf = cb.equal(eJcbnnf, id.getJCBNNF());
+		Predicate pJcbser = cb.equal(eJcbser, id.getJCBSER());
+		Predicate pJcn001 = cb.equal(eJcn001, id.getJCN001());
+		Predicate pJcdct = cb.equal(eJcdct, id.getJCDCT());
+		Predicate predicate = cb.and(pJcbnnf, pJcbser, pJcn001, pJcdct);
+
+		cQuery.select(cabecalho);
+		cQuery.where(predicate);
+
+		TypedQuery<F55IJC80> query = EntityManagerHelper.getEntityManager().createQuery(cQuery);
+		// query.setHint(QueryHints.CACHE_USAGE, CacheUsage.NoCache);
+		query.setHint(QueryHints.CACHE_STORE_MODE, CacheStoreMode.REFRESH);
+		List<F55IJC80> listF55IJC80 = query.getResultList();
+
+		EntityManagerHelper.closeEntityManager();
+
+		return listF55IJC80;
+	}
+
 	public List<F55IJC80> getF55IJC80Recebida() {
 
 		EntityManager manager = EntityManagerHelper.getEntityManager();

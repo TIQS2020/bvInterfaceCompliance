@@ -22,7 +22,6 @@ import br.com.bv.nfe.vo.naturezaOperacao.NaturezaOperacaoVO;
 import br.com.bv.nfe.vo.nfServico.NfServicoVO;
 import br.com.bv.nfe.vo.participante.ParticipanteVO;
 import br.com.bv.nfe.vo.unidade.UnidadeVO;
-import br.com.bv.vo.CpfCnpjVO;
 import br.com.bv.vo.EnvioVO;
 import br.com.bv.vo.ServicesVO;
 import br.com.compliance.nfe.dao.F55IJC80Dao;
@@ -80,17 +79,16 @@ public class EnvioControle {
 
 	MultOrgAuthentication autenticacao = null;
 	EnvioVO envioVO = null;
-	CpfCnpjVO cpfCnpjVO = null;
 	private static final String[] STATUS_EMISSAO = {"1"};
 	private String loteEnvio;
 	private static final Logger log = LogManager.getLogger(EnvioControle.class.getName());
 	private List<F55IJC80> listF55IJC80;
 	private ServicesVO servicesVO;
-	private F55IJC80Dao f55IJC80Dao = new F55IJC80Dao();
-	private F55IJC81Dao f55IJC81Dao = new F55IJC81Dao();	
-	private F55IJC83Dao f55IJC83Dao = new F55IJC83Dao();
-	private F55IJC84Dao f55IJC84Dao = new F55IJC84Dao();
-		
+	private final F55IJC80Dao f55IJC80Dao = new F55IJC80Dao();
+	private final F55IJC81Dao f55IJC81Dao = new F55IJC81Dao();
+	private final F55IJC83Dao f55IJC83Dao = new F55IJC83Dao();
+	private final F55IJC84Dao f55IJC84Dao = new F55IJC84Dao();
+	XmlFileControl xmlFileControl = new XmlFileControl();
 
 	public EnvioControle() {
 	}
@@ -105,12 +103,10 @@ public class EnvioControle {
 			XmlFileEnvioRoot xmlEnvioRoot = new XmlFileEnvioRoot();
 			Operacao<XmlFileEnvioRoot, XmlFileCancelamentoRoot> operacao = new Operacao<>(xmlEnvioRoot, null);
 
-			XmlFileControl xmlFileControl = new XmlFileControl();
 			List<ArquivoVo> arquivoVoList = xmlFileControl.xmlTransformToObject(operacao);			
 			
 			servicesVO = services;
-			
-			/*TODO: revisar*/
+
 			if(arquivoVoList.size() > 0) {
 				
 				for(ArquivoVo arquivoVo : arquivoVoList) {
@@ -149,7 +145,7 @@ public class EnvioControle {
 							
 							
 							List<F55IJC81> f55ijc81List = new ArrayList<F55IJC81>();
-							Long itemIndex = new Long(1);
+							Long itemIndex = 1L;
 							for(F55IJC81Item item : xml.getF55IJC81().getItem()) {							
 								F55IJC81Id f55IJC81Id = new F55IJC81Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), new Long(xml.getF55ijc80().getJCN001()), xml.getF55ijc80().getJCDCT(), itemIndex);
 								F55IJC81 f55IJC81 = new F55IJC81(f55IJC81Id,  item.getJCSOS1(),  item.getJCBNF0(),  item.getJCBSR0(),  item.getJCN002(),  item.getJCBNFS(),
@@ -187,7 +183,7 @@ public class EnvioControle {
 							}					
 							
 							List<F55IJC83> f55ijc83List = new ArrayList<F55IJC83>();
-							itemIndex = new Long(1);						
+							itemIndex = 1L;
 							for(F55IJC83Item item : xml.getF55IJC83().getItem()) {	
 								F55IJC83Id f55IJC83Id = new F55IJC83Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), new Long(xml.getF55ijc80().getJCN001()), xml.getF55ijc80().getJCDCT(), item.getJCNSP());
 								F55IJC83 f55IJC83 = new F55IJC83(f55IJC83Id, item.getJCAEXP(),  item.getJCKI03(),  item.getJCCHAR(),  item.getJCAA(),  item.getJCAA1(),
@@ -201,7 +197,7 @@ public class EnvioControle {
 							}
 							
 							List<F55IJC84> f55ijc84List = new ArrayList<F55IJC84>();
-							itemIndex = new Long(1);						
+							itemIndex = 1L;
 							for(F55IJC84Item item : xml.getF55IJC84().getItem()) {
 								F55IJC84Id f55IJC84Id = new F55IJC84Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), new Long(xml.getF55ijc80().getJCN001()), xml.getF55ijc80().getJCDCT(), item.getJCIA01());
 								F55IJC84 f55IJC84 = new F55IJC84(f55IJC84Id, item.getJCKY1(),  item.getJCEV02(),  item.getJCDQ01(),  item.getJCDQ02(),  null,
@@ -240,7 +236,7 @@ public class EnvioControle {
 
 							xmlFileControl.moveFile(sourceStr, destStr);
 						} catch (Exception e) {
-							e.printStackTrace(); //TODO: logar registros que não foi importado e mover pra pasta de erro
+							//e.printStackTrace(); //TODO: logar registros que não foi importado e mover pra pasta de erro
 							//xmlFileControl.moveFile(null, null);
 							log.error("## ERRO DE INTEGRACAO: ERRO AO INICIALIZAR O PROCESSO COM OS ARQUIVOS E BANCO LOCAL - EXCECAO --> " + e);
 							if (manager.getTransaction().isActive()) {
@@ -253,7 +249,7 @@ public class EnvioControle {
 
 						log.info("## INICIANDO MONTAGEM DOS OBJETOS DE EMISSAO ##");
 						listF55IJC80 = f55IJC80Dao.getF55IJC80byStatus(STATUS_EMISSAO);
-						//montaObjetos();
+						montaObjetos(caminhosVO, arquivoVo);
 						log.info("## FINALIZANDO PROCESSO DE EMISSAO ##");	
 						
 					}else {
@@ -270,14 +266,14 @@ public class EnvioControle {
 		}
 	}
 
-	public void montaObjetos() {
+	public void montaObjetos(CaminhosVO caminhosVO, ArquivoVo arquivoVo) {
 
 		log.info("## Montando Objetos - Percorrendo listagem de notas ##");
 		
 		try {
 			
 			if (!listF55IJC80.isEmpty()) {
-				log.info("Notas Listadas: " + listF55IJC80.toString());
+				log.info("Notas Listadas: " + listF55IJC80);
 				Iterator<F55IJC80> it = listF55IJC80.iterator();
 				while (it.hasNext()) {
 					try {
@@ -320,6 +316,11 @@ public class EnvioControle {
 
 						atualizaF55IJC80(loteEnvio);
 
+						String sourceStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
+						String destStr = caminhosVO.getFinalizado() + "\\" + arquivoVo.getNome();
+
+						xmlFileControl.moveFile(sourceStr, destStr);
+
 					} catch (Exception ex) {
 						log.error("## ERRO DE INTEGRACAO: NOTA --> " + envioVO.getId().getJCBNNF() + " EXCECAO --> "
 								+ ex);
@@ -327,9 +328,8 @@ public class EnvioControle {
 
 						try {
 							f55IJC80Dao.updateF55IJC80Erro(envioVO.getId());
-							//f76B01TEDao.updateF76b01teErro(envioVO.getF76b01te());
 						} catch (Exception e) {
-							log.error("## ERRO DE INTEGRACAO: CADASTRO PARTICIPANTE -- NOTA --> "
+							log.error("## ERRO DE INTEGRACAO: NOTA --> "
 									+ envioVO.getId().getJCBNNF() + " EXCECAO --> " + e);
 
 							ExceptionHelper.error(ex);
@@ -348,9 +348,8 @@ public class EnvioControle {
 
 			try {
 				f55IJC80Dao.updateF55IJC80Erro(envioVO.getId());
-				//f76B01TEDao.updateF76b01teErro(envioVO.getF76b01te());
 			} catch (Exception e) {
-				log.error("## ERRO DE INTEGRACAO: ERRO AO ATUALIZAR F55IJC80 E F76B01TE - EXCECAO --> " + e);	
+				log.error("## ERRO DE INTEGRACAO: EXCECAO --> " + e);
 			}
 		}
 
