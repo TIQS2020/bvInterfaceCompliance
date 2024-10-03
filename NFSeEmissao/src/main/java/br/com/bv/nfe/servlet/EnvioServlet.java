@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.bv.nfe.controle.EnvioControle;
-import br.com.bv.vo.CaminhosVO;
 import br.com.bv.vo.ServicesVO;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 
 /**
  * Servlet implementation class EnvioServlet
@@ -60,7 +60,8 @@ public class EnvioServlet extends HttpServlet {
 		servicesVO.setUnidadeServiceURL(unidadeServiceURL);
 
 		CaminhosVO caminhosVO = new CaminhosVO(request.getParameter("envioRecebidoXML"),
-				request.getParameter("envioProcessamentoXML"),request.getParameter("envioFinalizadoXML"));
+				request.getParameter("envioProcessamentoXML"),request.getParameter("envioFinalizadoXML"),
+				request.getParameter("envioErroXML"));
 		
 		eCtrl.inicializaProcesso(servicesVO, caminhosVO);
 	}

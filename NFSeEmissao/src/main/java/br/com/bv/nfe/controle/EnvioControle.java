@@ -5,15 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.xml.rpc.ServiceException;
 
-import br.com.bv.vo.CaminhosVO;
-import br.com.compliance.nfe.jde.domain.F55IJC02;
-import br.com.compliance.nfe.jde.domain.F55IJC02Id;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,9 +21,8 @@ import br.com.bv.nfe.vo.unidade.UnidadeVO;
 import br.com.bv.vo.EnvioVO;
 import br.com.bv.vo.ServicesVO;
 import br.com.compliance.nfe.dao.F55IJC80Dao;
-import br.com.compliance.nfe.dao.F55IJC81Dao;
-import br.com.compliance.nfe.dao.F55IJC83Dao;
-import br.com.compliance.nfe.dao.F55IJC84Dao;
+import br.com.compliance.nfe.jde.domain.F55IJC02;
+import br.com.compliance.nfe.jde.domain.F55IJC02Id;
 import br.com.compliance.nfe.jde.domain.F55IJC80;
 import br.com.compliance.nfe.jde.domain.F55IJC80Id;
 import br.com.compliance.nfe.jde.domain.F55IJC81;
@@ -39,6 +34,7 @@ import br.com.compliance.nfe.jde.domain.F55IJC84Id;
 import br.com.compliance.nfe.jpa.EntityManagerHelper;
 import br.com.compliance.nfe.util.DateUtil;
 import br.com.compliance.nfe.util.ExceptionHelper;
+import br.com.compliance.nfe.util.TrimUtil;
 import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.item.Item;
 import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.naturezaOperacao.NaturezaOperacao;
 import br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.NfServicos;
@@ -74,20 +70,16 @@ import br.com.nfe.xml.envio.XmlFileEnvioRoot;
 import br.com.nfe.xml.envio.vo.F55IJC81Item;
 import br.com.nfe.xml.envio.vo.F55IJC83Item;
 import br.com.nfe.xml.envio.vo.F55IJC84Item;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 
 public class EnvioControle {
 
 	MultOrgAuthentication autenticacao = null;
 	EnvioVO envioVO = null;
-	private static final String[] STATUS_EMISSAO = {"1"};
 	private String loteEnvio;
-	private static final Logger log = LogManager.getLogger(EnvioControle.class.getName());
-	private List<F55IJC80> listF55IJC80;
+	private static final Logger log = LogManager.getLogger(EnvioControle.class.getName());	
 	private ServicesVO servicesVO;
 	private final F55IJC80Dao f55IJC80Dao = new F55IJC80Dao();
-	private final F55IJC81Dao f55IJC81Dao = new F55IJC81Dao();
-	private final F55IJC83Dao f55IJC83Dao = new F55IJC83Dao();
-	private final F55IJC84Dao f55IJC84Dao = new F55IJC84Dao();
 	XmlFileControl xmlFileControl = new XmlFileControl();
 
 	public EnvioControle() {
@@ -112,15 +104,24 @@ public class EnvioControle {
 				for(ArquivoVo arquivoVo : arquivoVoList) {
 					
 					if(arquivoVo.getXmlFileEnvioRoot() != null) {
+
+						String sourceStr = caminhosVO.getRecebido() + "\\" + arquivoVo.getNome();
+						String destStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
+
+						xmlFileControl.moveFile(sourceStr, destStr);
+
 						EntityManager manager = EntityManagerHelper.getEntityManager();
 
 						XmlFileEnvioRoot xml = arquivoVo.getXmlFileEnvioRoot();
+
+						envioVO = new EnvioVO();
 						
 						try {
 							manager.getTransaction().begin();						
 							
 							F55IJC80Id f55IJC80Id = new F55IJC80Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), xml.getF55ijc80().getJCN001(), xml.getF55ijc80().getJCDCT());
-							F55IJC80 f55ijc80 = new F55IJC80(f55IJC80Id, xml.getF55ijc80().getJCBNF0(),  xml.getF55ijc80().getJCBSR0(),  xml.getF55ijc80().getJCN002(),  xml.getF55ijc80().getJCBNFS(),  xml.getF55ijc80().getJCOCTO(),
+
+							F55IJC80 f55IJC80 = new F55IJC80(f55IJC80Id, xml.getF55ijc80().getJCBNF0(),  xml.getF55ijc80().getJCBSR0(),  xml.getF55ijc80().getJCN002(),  xml.getF55ijc80().getJCBNFS(),  xml.getF55ijc80().getJCOCTO(),
 									xml.getF55ijc80().getJCMCU(),  xml.getF55ijc80().getJCCO(),  xml.getF55ijc80().getJCFCO(),  xml.getF55ijc80().getJCSHAN(),  xml.getF55ijc80().getJCAN8(),  xml.getF55ijc80().getJCBCGT(),  xml.getF55ijc80().getJCBCPT(),
 									xml.getF55ijc80().getJCSHST(),  xml.getF55ijc80().getJCSHZP(),  xml.getF55ijc80().getJCVR01(),  xml.getF55ijc80().getJCBSFH(),  xml.getF55ijc80().getJCAN8V(),  xml.getF55ijc80().getJCBCGF(),  xml.getF55ijc80().getJCBCPF(),
 									xml.getF55ijc80().getJCADDS(),  xml.getF55ijc80().getJCBFRT(),  xml.getF55ijc80().getJCBSEG(),  xml.getF55ijc80().getJCBDFN(),  xml.getF55ijc80().getJCBDES(),
@@ -135,19 +136,28 @@ public class EnvioControle {
 									xml.getF55ijc80().getJCBD03(),  xml.getF55ijc80().getJCBD04(),  xml.getF55ijc80().getJCBVLF(),  xml.getF55ijc80().getJCUSER(),  xml.getF55ijc80().getJCPID(),  xml.getF55ijc80().getJCJOBN(),  xml.getF55ijc80().getJCUPMJ(),
 									xml.getF55ijc80().getJCTDAY(),  xml.getF55ijc80().getJCBBIR(),  xml.getF55ijc80().getJCBIPR(),  xml.getF55ijc80().getJCCRCD(),  xml.getF55ijc80().getJCFTR(),  xml.getF55ijc80().getJCF1T(),
 									xml.getF55ijc80().getJCUSB1(),  xml.getF55ijc80().getJCURRF(),  xml.getF55ijc80().getJCURAB(),  xml.getF55ijc80().getJCURAT(),  xml.getF55ijc80().getJCURDT(),  xml.getF55ijc80().getJCURCD(),  xml.getF55ijc80().getJCURC1(),
-									xml.getF55ijc80().getJCURC2(),  xml.getF55ijc80().getJCDEJ(),  xml.getF55ijc80().getJCEV08(),  xml.getF55ijc80().getJCEV09(),  xml.getF55ijc80().getJCAA10(),  xml.getF55ijc80().getJCWTXT(),  xml.getF55ijc80().getJCEV01(),
+									xml.getF55ijc80().getJCURC2(),  xml.getF55ijc80().getJCDEJ(),  xml.getF55ijc80().getJCEV08(), arquivoVo.getNome(),  xml.getF55ijc80().getJCAA10(),  xml.getF55ijc80().getJCWTXT(),  xml.getF55ijc80().getJCEV01(),
 									xml.getF55ijc80().getJCEV03(),  xml.getF55ijc80().getJCUK01(),  xml.getF55ijc80().getJCAA02(),  xml.getF55ijc80().getJCEV04(),  xml.getF55ijc80().getJCEV05(),  xml.getF55ijc80().getJCEV06(),  xml.getF55ijc80().getJCEV02(),
 									xml.getF55ijc80().getJCEV07(),  xml.getF55ijc80().getJCID1(),  xml.getF55ijc80().getJCA201(),  xml.getF55ijc80().getJCAN01(),  xml.getF55ijc80().getJCAN02(),  xml.getF55ijc80().getJCEV11(),
 									xml.getF55ijc80().getJCEV12(),  xml.getF55ijc80().getJCAA07(),  xml.getF55ijc80().getJCEV14(),  xml.getF55ijc80().getJCEV15(),  xml.getF55ijc80().getJCEV16(),  xml.getF55ijc80().getJCEV17(),  xml.getF55ijc80().getJCUK02(),
 									xml.getF55ijc80().getJCBRNFDE(),  xml.getF55ijc80().getJCCAND(),  xml.getF55ijc80().getJCDTA1(),  xml.getF55ijc80().getJCA203(),  xml.getF55ijc80().getJCAG2(),  xml.getF55ijc80().getJCAAMT1(),
 									xml.getF55ijc80().getJCADSD(),  xml.getF55ijc80().getJCCDCID(),  xml.getF55ijc80().getJCA202(),  xml.getF55ijc80().getJCLEG(),  xml.getF55ijc80().getJCBISC(),  xml.getF55ijc80().getJCERN(),  xml.getF55ijc80().getJCATRD(),
-									xml.getF55ijc80().getJCB76ERN(),  xml.getF55ijc80().getJCAPTA());
-							
-							
+									xml.getF55ijc80().getJCB76ERN(),  xml.getF55ijc80().getJCAPTA(), "P");
+							TrimUtil.trimStrings(f55IJC80);
+
+							F55IJC80 existeF55ijc80 = manager.find(F55IJC80.class, f55IJC80Id);
+
+							if(existeF55ijc80 != null){
+								manager.merge(f55IJC80);
+							}else{
+								manager.persist(f55IJC80);
+							}
+
 							List<F55IJC81> f55ijc81List = new ArrayList<F55IJC81>();
 							Long itemIndex = 1L;
 							for(F55IJC81Item item : xml.getF55IJC81().getItem()) {							
-								F55IJC81Id f55IJC81Id = new F55IJC81Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), new Long(xml.getF55ijc80().getJCN001()), xml.getF55ijc80().getJCDCT(), itemIndex);
+								F55IJC81Id f55IJC81Id = new F55IJC81Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), xml.getF55ijc80().getJCN001().longValue(), 
+																		xml.getF55ijc80().getJCDCT(), itemIndex);
 								F55IJC81 f55IJC81 = new F55IJC81(f55IJC81Id,  item.getJCSOS1(),  item.getJCBNF0(),  item.getJCBSR0(),  item.getJCN002(),  item.getJCBNFS(),
 										 item.getJCOCTO(),  item.getJCMATC(),  item.getJCDOCO(),  item.getJCPDCT(),  item.getJCKCOO(),  item.getJCSFXO(),  item.getJCLNID(),
 										 item.getJCNLIN(),  item.getJCDOC(),  item.getJCDCTO(),  item.getJCCO(),  item.getJCFCO(),  item.getJCITM(),  item.getJCLITM(),
@@ -176,7 +186,16 @@ public class EnvioControle {
 										 item.getJCVT04(),  item.getJCVT06(),  item.getJCAN10(),  item.getJCAN12(),  item.getJCAN08(),
 										 item.getJCAN11(),  item.getJCAN13(),  item.getJCAN09(),  item.getJCVT10(),  item.getJCVT12(),
 										 item.getJCVT08(),  item.getJCAGEN(),  item.getJC54RBDPW(),  item.getJCEV01(),  item.getJCEV08(),  item.getJCD200());
-								
+								TrimUtil.trimStrings(f55IJC81);
+
+								F55IJC81 existeF55ijc81 = manager.find(F55IJC81.class, f55IJC81Id);
+
+								if(existeF55ijc81 != null){
+									manager.merge(f55IJC81);
+								}else{
+									manager.persist(f55IJC81);
+								}
+
 								itemIndex++;
 								f55ijc81List.add(f55IJC81);
 								
@@ -185,12 +204,21 @@ public class EnvioControle {
 							List<F55IJC83> f55ijc83List = new ArrayList<F55IJC83>();
 							itemIndex = 1L;
 							for(F55IJC83Item item : xml.getF55IJC83().getItem()) {	
-								F55IJC83Id f55IJC83Id = new F55IJC83Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), new Long(xml.getF55ijc80().getJCN001()), xml.getF55ijc80().getJCDCT(), item.getJCNSP());
+								F55IJC83Id f55IJC83Id = new F55IJC83Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), xml.getF55ijc80().getJCN001().longValue(), xml.getF55ijc80().getJCDCT(), item.getJCNSP());
 								F55IJC83 f55IJC83 = new F55IJC83(f55IJC83Id, item.getJCAEXP(),  item.getJCKI03(),  item.getJCCHAR(),  item.getJCAA(),  item.getJCAA1(),
 										item.getJCIMVD(),  item.getJCFBDPRCD(),  item.getJCUSER(),  item.getJCTORG(),  item.getJCPID(),  item.getJCJOBN(),  item.getJCUPMJ(),
 										item.getJCUPMT(),  item.getJCURRF(),  item.getJCURAB(),  item.getJCURAT(),  item.getJCURDT(),  item.getJCURCD(),  item.getJCURC1(),
 										item.getJCURC2(),  item.getJCDDJ(),  item.getJCCRPR());
-								
+								TrimUtil.trimStrings(f55IJC83);
+
+								F55IJC83 existeF55ijc83 = manager.find(F55IJC83.class, f55IJC83Id);
+
+								if(existeF55ijc83 != null){
+									manager.merge(f55IJC83);
+								}else{
+									manager.persist(f55IJC83);
+								}
+
 								itemIndex++;
 								f55ijc83List.add(f55IJC83);
 								
@@ -199,58 +227,87 @@ public class EnvioControle {
 							List<F55IJC84> f55ijc84List = new ArrayList<F55IJC84>();
 							itemIndex = 1L;
 							for(F55IJC84Item item : xml.getF55IJC84().getItem()) {
-								F55IJC84Id f55IJC84Id = new F55IJC84Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), new Long(xml.getF55ijc80().getJCN001()), xml.getF55ijc80().getJCDCT(), item.getJCIA01());
-								F55IJC84 f55IJC84 = new F55IJC84(f55IJC84Id, item.getJCKY1(),  item.getJCEV02(),  item.getJCDQ01(),  item.getJCDQ02(),  null,
-										item.getJCPP01(),  item.getJCAA02(),  item.getJCKA01(),  item.getJCQ60(),  item.getJCPDSC(),  item.getJCTXLN(),  null,
+								F55IJC84Id f55IJC84Id = new F55IJC84Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), xml.getF55ijc80().getJCN001().longValue(), xml.getF55ijc80().getJCDCT(), item.getJCIA01());
+								F55IJC84 f55IJC84 = new F55IJC84(f55IJC84Id, item.getJCKY1(),  item.getJCEV02(),  item.getJCDQ01(),  item.getJCDQ02(),  item.getJCIDNO(),
+										item.getJCPP01(),  item.getJCAA02(),  item.getJCKA01(),  item.getJCQ60(),  item.getJCPDSC(),  item.getJCTXLN(),  item.getJCPP02(),
 										item.getJCAA08(),  item.getJCCMT1(),  item.getJCCMT2(),  item.getJCAA09(),  item.getJCAA04(),  item.getJCA901(),  item.getJCCL02(),
 										item.getJCCH2(),  item.getJCCH3(),  item.getJCEV03(),  item.getJCEV04(),  item.getJCAA12(),  item.getJCAA11(),  item.getJCKI08(),
 										item.getJCTD1(),  item.getJCMSFX(),  item.getJCRT01(),  item.getJCAA20(),  item.getJCXDEC(),  item.getJCUSER(),  item.getJCTORG(),
 										item.getJCPID(),  item.getJCJOBN(),  item.getJCUPMJ(),  item.getJCUPMT(),  item.getJCURRF(),  item.getJCURAB(),
 										item.getJCURAT(),  item.getJCURDT(),  item.getJCURCD(),  item.getJCURC1(),  item.getJCURC2(),  item.getJCWTXT(),  item.getJCAA10(),
-										item.getJCAN8(),  item.getJCAAIL(),  item.getJCDESTIN(),  item.getJCEMAL(),  item.getJCEV05());							
-								
+										item.getJCAN8(),  item.getJCAAIL(),  item.getJCDESTIN(),  item.getJCEMAL(),  item.getJCEV05());
+								TrimUtil.trimStrings(f55IJC84);
+
+								F55IJC84 existeF55ijc84 = manager.find(F55IJC84.class, f55IJC84Id);
+
+								if(existeF55ijc84 != null){
+									manager.merge(f55IJC84);
+								}else{
+									manager.persist(f55IJC84);
+								}
+
 								itemIndex++;
 								f55ijc84List.add(f55IJC84);
 							}
 
-							F55IJC02Id f55IJC02Id = new F55IJC02Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), xml.getF55ijc80().getJCN001(), xml.getF55ijc80().getJCDCT());
-							F55IJC02 f55IJC02 = new F55IJC02(f55IJC02Id, xml.getF55IJC02().getJCB76ELN(), xml.getF55IJC02().getJCB76ELND(), xml.getF55IJC02().getJCB76EREF(), xml.getF55IJC02().getJCB76ELNT(),
-									xml.getF55IJC02().getJCCDCID(), xml.getF55IJC02().getJCA202(), xml.getF55IJC02().getJCUSER(), xml.getF55IJC02().getJCUPMJ(), xml.getF55IJC02().getJCUPMT(),
-									xml.getF55IJC02().getJCJOBN(), xml.getF55IJC02().getJCPID());
-							
-							manager.persist(f55IJC02);
-							manager.persist(f55ijc80);
-							for(F55IJC81 item : f55ijc81List){
-								manager.persist(item);
+							F55IJC02Id f55IJC02Id = null;
+							F55IJC02 f55IJC02 = null;
+							if(xml.getF55IJC02() != null){
+								f55IJC02Id = new F55IJC02Id(xml.getF55ijc80().getJCBNNF(), xml.getF55ijc80().getJCBSER(), xml.getF55ijc80().getJCN001(), xml.getF55ijc80().getJCDCT());
+								f55IJC02 = new F55IJC02(f55IJC02Id, xml.getF55IJC02().getJCB76ELN(), xml.getF55IJC02().getJCB76ELND(), xml.getF55IJC02().getJCB76EREF(), xml.getF55IJC02().getJCB76ELNT(),
+										xml.getF55IJC02().getJCCDCID(), xml.getF55IJC02().getJCA202(), xml.getF55IJC02().getJCUSER(), xml.getF55IJC02().getJCUPMJ(), xml.getF55IJC02().getJCUPMT(),
+										xml.getF55IJC02().getJCJOBN(), xml.getF55IJC02().getJCPID());
+								TrimUtil.trimStrings(f55IJC02);
+
+								F55IJC02 existeF55ijc02 = manager.find(F55IJC02.class, f55IJC02Id);
+
+								if(existeF55ijc02 != null){
+									manager.merge(f55IJC02);
+								}else{
+									manager.persist(f55IJC02);
+								}
+
 							}
-							for(F55IJC83 item : f55ijc83List){
-								manager.persist(item);
-							}
-							for(F55IJC84 item : f55ijc84List){
-								manager.persist(item);
-							}
+
 							manager.getTransaction().commit();
 
-							String sourceStr = caminhosVO.getRecebido() + "\\" + arquivoVo.getNome();
-							String destStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
+							envioVO.setHeader(f55IJC80);
+							envioVO.setId(f55IJC80.getId());
+							envioVO.setDetalheNFeList(f55ijc81List);
+							envioVO.setVencimentoNFeList(f55ijc83List);
+							envioVO.setParticipanteNFeList(f55ijc84List);
+							envioVO.setLegado(f55IJC02);
 
-							xmlFileControl.moveFile(sourceStr, destStr);
+							for (F55IJC84 part : f55ijc84List) {
+								if (part.getId().getJCIA01() == 5) {
+									envioVO.setCodigoMultOrg(part.getJCAAIL());
+									envioVO.setHashMultOrg(part.getJCDESTIN());
+								}
+							}
+
+							if (envioVO.getCodigoMultOrg() != null && !envioVO.getCodigoMultOrg().isEmpty()) {
+								autenticacao = new MultOrgAuthentication(envioVO.getCodigoMultOrg().trim(),
+										envioVO.getHashMultOrg().trim());
+							}
+
+							log.info("## INICIANDO MONTAGEM DOS OBJETOS DE EMISSAO E ENVIO PRO COMPLIANCE ##");
+							montaObjetos(caminhosVO, arquivoVo);
+							log.info("## FINALIZANDO PROCESSO DE EMISSAO E ENVIO PRO COMPLIANCE ##");
+
+
 						} catch (Exception e) {
-							//e.printStackTrace(); //TODO: logar registros que não foi importado e mover pra pasta de erro
-							//xmlFileControl.moveFile(null, null);
+							sourceStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
+							destStr = caminhosVO.getErro() + "\\" + arquivoVo.getNome();
+							xmlFileControl.moveFile(sourceStr, destStr);
 							log.error("## ERRO DE INTEGRACAO: ERRO AO INICIALIZAR O PROCESSO COM OS ARQUIVOS E BANCO LOCAL - EXCECAO --> " + e);
 							if (manager.getTransaction().isActive()) {
 								manager.getTransaction().rollback();
 							}
 						} finally {
-							manager.close();
+							if (manager.isOpen()) {
+								manager.close();
+							}
 						}
-
-
-						log.info("## INICIANDO MONTAGEM DOS OBJETOS DE EMISSAO ##");
-						listF55IJC80 = f55IJC80Dao.getF55IJC80byStatus(STATUS_EMISSAO);
-						montaObjetos(caminhosVO, arquivoVo);
-						log.info("## FINALIZANDO PROCESSO DE EMISSAO ##");	
 						
 					}else {
 						log.info("++ NENHUM ARQUIVO ENCONTRADO ++");
@@ -268,101 +325,54 @@ public class EnvioControle {
 
 	public void montaObjetos(CaminhosVO caminhosVO, ArquivoVo arquivoVo) {
 
-		log.info("## Montando Objetos - Percorrendo listagem de notas ##");
-		
+		log.info("## Montando Objetos - ##");
+
 		try {
-			
-			if (!listF55IJC80.isEmpty()) {
-				log.info("Notas Listadas: " + listF55IJC80);
-				Iterator<F55IJC80> it = listF55IJC80.iterator();
-				while (it.hasNext()) {
-					try {
-						F55IJC80 f = it.next();
 
-						log.info("## Nota ##");
-						log.info("+ Numero: " + f.getId().getJCBNNF());
-						log.info("+ Serie: " + f.getId().getJCBSER());
-						log.info("+ Pre Nota: " + f.getId().getJCN001());
-						log.info("+ Tipo: " + f.getId().getJCDCT());
-						
-						envioVO = new EnvioVO();
-						
-						envioVO.setHeader(f);
-						envioVO.setId(f.getId());
-						envioVO.setDetalheNFeList(f55IJC81Dao.listF55IJC81ById(envioVO.getId()));						
-						envioVO.setVencimentoNFeList(f55IJC83Dao.listF55IJC83ById(envioVO.getId()));
-						envioVO.setParticipanteNFeList(f55IJC84Dao.listF55IJC84ById(envioVO.getId()));						
+			log.info("## Nota ##");
+			log.info("+ Numero: " + envioVO.getHeader().getId().getJCBNNF());
+			log.info("+ Serie: " + envioVO.getHeader().getId().getJCBSER());
+			log.info("+ Pre Nota: " + envioVO.getHeader().getId().getJCN001());
+			log.info("+ Tipo: " + envioVO.getHeader().getId().getJCDCT());
 
-						List<F55IJC84> listPart = f55IJC84Dao.listF55IJC84ById(envioVO.getId());
+			cadastraItem(servicesVO.getItemServiceURL());
+			cadastraParticipante(servicesVO.getParticipanteServiceURL());
+			cadastrarNaturezaOperacao(servicesVO.getNatOpServiceURL());
+			cadastrarUnidade(servicesVO.getUnidadeServiceURL());
 
-						for (F55IJC84 part : listPart) {
-							if (part.getId().getJCIA01() == 5) {
-								envioVO.setCodigoMultOrg(part.getJCAAIL());
-								envioVO.setHashMultOrg(part.getJCDESTIN());
-							}
-						}
+			envioNFSe(servicesVO.getEnvioNFeServiceURL());
 
-						if (envioVO.getCodigoMultOrg() != null && !envioVO.getCodigoMultOrg().isEmpty()) {
-							autenticacao = new MultOrgAuthentication(envioVO.getCodigoMultOrg(),
-									envioVO.getHashMultOrg());
-						}
+			atualizaF55IJC80(envioVO);
 
-						cadastraItem(servicesVO.getItemServiceURL());
-						cadastraParticipante(servicesVO.getParticipanteServiceURL());
-						cadastrarNaturezaOperacao(servicesVO.getNatOpServiceURL());
-						cadastrarUnidade(servicesVO.getUnidadeServiceURL());
+			String sourceStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
+			String destStr = caminhosVO.getFinalizado() + "\\" + arquivoVo.getNome();
 
-						envioNFSe(servicesVO.getEnvioNFeServiceURL());
+			xmlFileControl.moveFile(sourceStr, destStr);
 
-						atualizaF55IJC80(loteEnvio);
-
-						String sourceStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
-						String destStr = caminhosVO.getFinalizado() + "\\" + arquivoVo.getNome();
-
-						xmlFileControl.moveFile(sourceStr, destStr);
-
-					} catch (Exception ex) {
-						log.error("## ERRO DE INTEGRACAO: NOTA --> " + envioVO.getId().getJCBNNF() + " EXCECAO --> "
-								+ ex);
-						ExceptionHelper.error(ex);
-
-						try {
-							f55IJC80Dao.updateF55IJC80Erro(envioVO.getId());
-						} catch (Exception e) {
-							log.error("## ERRO DE INTEGRACAO: NOTA --> "
-									+ envioVO.getId().getJCBNNF() + " EXCECAO --> " + e);
-
-							ExceptionHelper.error(ex);
-						}
-					}
-
-				}
-			} else {
-				log.info("++ Nao ha notas para envio.");
-			}
-
-		} catch (Exception exIbge) {//catch (IOException exIbge) {
-			log.error("## ERRO DE INTEGRACAO: ARQUIVO IBGE NAO ENCONTRADO - EXCECAO --> "
-					+ exIbge);
-			ExceptionHelper.error(exIbge);
-
+		} catch (Exception ex) {
+			log.error("## ERRO DE INTEGRACAO: NOTA --> " + envioVO.getId().getJCBNNF() + " EXCECAO --> "
+					+ ex);
+			ExceptionHelper.error(ex);
 			try {
-				f55IJC80Dao.updateF55IJC80Erro(envioVO.getId());
+				envioVO.getHeader().setJCEV15("E");
+				envioVO.getHeader().setJCDEJ(DateUtil.convertToJulian(new Date()));
+				atualizaF55IJC80(envioVO);
+				String sourceStr = caminhosVO.getProcessando() + "\\" + arquivoVo.getNome();
+				String destStr = caminhosVO.getErro() + "\\" + arquivoVo.getNome();
+				xmlFileControl.moveFile(sourceStr, destStr);
 			} catch (Exception e) {
-				log.error("## ERRO DE INTEGRACAO: EXCECAO --> " + e);
+				log.error("## ERRO DE INTEGRACAO: NOTA --> "
+						+ envioVO.getId().getJCBNNF() + " EXCECAO --> " + e);
+				ExceptionHelper.error(ex);
 			}
 		}
 
 		log.info("## Fechando o metodo de montagem de Objetos ##");
 	}
 
-	public void atualizaF55IJC80(String numeroLote) {
+	public void atualizaF55IJC80(EnvioVO vo) {
 
-		if (numeroLote != null) {
-			envioVO.getHeader().setJCDEJ(DateUtil.convertToJulian(new Date()));
-			envioVO.getHeader().setJCUK02(Long.parseLong(numeroLote));
-			envioVO.getHeader().setJCBRNFDE(DateUtil.convertToJulian(new Date()));
-
+		if (vo.getHeader() != null) {
 			try {
 				f55IJC80Dao.updateF55IJC80(envioVO.getHeader());
 			} catch (Exception e) {
@@ -400,7 +410,11 @@ public class EnvioControle {
 
 					log.info("++ Cadastro NFe : Protocolo do lote = " + lote.getNumeroProtocoloLote());
 
-					loteEnvio = lote.getNumeroProtocoloLote().toString();					
+					loteEnvio = lote.getNumeroProtocoloLote().toString();
+					envioVO.getHeader().setJCUK02(Long.parseLong(loteEnvio));
+					envioVO.getHeader().setJCEV15("1");
+					envioVO.getHeader().setJCDEJ(DateUtil.convertToJulian(new Date()));
+					envioVO.getHeader().setJCBRNFDE(DateUtil.convertToJulian(new Date()));
 
 				} catch (ServiceException e) {
 					log.error(
@@ -525,10 +539,10 @@ public class EnvioControle {
 					ExceptionHelper.error(e);
 				}
 			} else {
-				log.info("++ Cadastro Natureza Operação: Nï¿½o hï¿½ Natureza Operaï¿½ï¿½o para serem cadastradas ++");
+				log.info("++ Cadastro Natureza Operaï¿½ï¿½o: Nï¿½o hï¿½ Natureza Operaï¿½ï¿½o para serem cadastradas ++");
 			}
 		} else {
-			log.info("++ Cadastro Natureza Operação: Nï¿½o hï¿½ cï¿½digo de autenticaï¿½ï¿½o ++");
+			log.info("++ Cadastro Natureza Operaï¿½ï¿½o: Nï¿½o hï¿½ cï¿½digo de autenticaï¿½ï¿½o ++");
 		}
 
 	}

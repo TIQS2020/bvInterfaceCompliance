@@ -3,7 +3,7 @@ package br.com.nfe.xml.cancelamento;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "NFeCanc")
+@XmlRootElement(name = "NFCancel")
 public class XmlFileCancelamentoRoot {
 
 	private Integer JCBNNF;

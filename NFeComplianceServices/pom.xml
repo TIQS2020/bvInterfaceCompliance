@@ -5,6 +5,7 @@
 	<groupId>NFeCompliance</groupId>
 	<artifactId>NFeComplianceServices</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 	<name>NFeComplianceServices</name>
 	<description>Serviços compliance para NFe</description>
 	<dependencies>

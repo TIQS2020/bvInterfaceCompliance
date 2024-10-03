@@ -38,7 +38,7 @@ public class XMLPathReader {
     }  
     
 
-    public File[] getXMLFiles(String path) {
+    public File[] getXMLFiles(String path) throws Exception{
         if (path != null) {
             File folder = new File(path);
             return folder.listFiles((dir, name) -> name.endsWith(".xml"));

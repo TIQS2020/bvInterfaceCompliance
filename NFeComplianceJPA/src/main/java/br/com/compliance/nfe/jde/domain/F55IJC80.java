@@ -12,13 +12,7 @@ public class F55IJC80 {
 	/* Classe chave */
 	@EmbeddedId
 	private F55IJC80Id id;
-
-	/* campos chave 	private Integer JCBNNF;
-	private String JCBSER;
-	private Integer JCN001;
-	private String JCDCT;*/
-
-	/* chave */
+	
 	private Integer JCBNF0;
 	private String JCBSR0;
 	private Integer JCN002;
@@ -166,19 +160,9 @@ public class F55IJC80 {
 	
 	/*Caampo de mensagem de lote rejeitado*/
 	private String JCAPTA;
-
-	public String getJCA201() {
-		return JCA201;
-	}
-
-	public void setJCA201(String jCA201) {
-		JCA201 = jCA201;
-	}
-
-	public F55IJC80() {
-	}
 	
-	
+	/*Campo de status para não regerar arquivos que estiverem com erro ou rejeitados*/
+	private String JCA204;
 
 	public F55IJC80(F55IJC80Id id, Integer jCBNF0, String jCBSR0, Integer jCN002, String jCBNFS, String jCOCTO,
 			String jCMCU, String jCCO, String jCFCO, Integer jCSHAN, Integer jCAN8, String jCBCGT, String jCBCPT,
@@ -201,7 +185,7 @@ public class F55IJC80 {
 			String jCEV12, String jCAA07, String jCEV14, String jCEV15, String jCEV16, String jCEV17, Long jCUK02,
 			Integer jCBRNFDE, Integer jCCAND, String jCDTA1, String jCA203, BigDecimal jCAG2, BigDecimal jCAAMT1,
 			String jCADSD, String jCCDCID, String jCA202, String jCLEG, String jCBISC, String jCERN, String jCATRD,
-			String jCB76ERN, String jCAPTA) {
+			String jCB76ERN, String jCAPTA, String jCA204) {
 		super();
 		this.id = id;
 		JCBNF0 = jCBNF0;
@@ -335,40 +319,19 @@ public class F55IJC80 {
 		JCATRD = jCATRD;
 		JCB76ERN = jCB76ERN;
 		JCAPTA = jCAPTA;
+		JCA204 = jCA204;
 	}
 
-	/*
-	public Integer getJCBNNF() {
-		return JCBNNF;
+	public String getJCA201() {
+		return JCA201;
 	}
 
-	public void setJCBNNF(Integer jCBNNF) {
-		JCBNNF = jCBNNF;
+	public void setJCA201(String jCA201) {
+		JCA201 = jCA201;
 	}
 
-	public String getJCBSER() {
-		return JCBSER;
-	}
-
-	public void setJCBSER(String jCBSER) {
-		JCBSER = jCBSER;
-	}
-
-	public Integer getJCN001() {
-		return JCN001;
-	}
-
-	public void setJCN001(Integer jCN001) {
-		JCN001 = jCN001;
-	}
-
-	public String getJCDCT() {
-		return JCDCT;
-	}
-
-	public void setJCDCT(String jCDCT) {
-		JCDCT = jCDCT;
-	}*/
+	public F55IJC80() {
+	}	
 
 	public Integer getJCBNF0() {
 		return JCBNF0;
@@ -1404,11 +1367,6 @@ public class F55IJC80 {
 		JCB76ERN = jCB76ERN;
 	}
 
-/*	@Override
-	public String toString() {
-		return "[NOTA = " + JCBNNF + "]";
-	}
-*/
 	public String getJCAPTA() {
 		return JCAPTA;
 	}
@@ -1424,6 +1382,16 @@ public class F55IJC80 {
 	public void setJCAPTA(String jCAPTA) {
 		JCAPTA = jCAPTA;
 	}
+
+	public String getJCA204() {
+		return JCA204;
+	}
+
+	public void setJCA204(String jCA204) {
+		JCA204 = jCA204;
+	}
+
+
 	
 	
 }

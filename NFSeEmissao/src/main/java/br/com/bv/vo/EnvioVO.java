@@ -2,6 +2,7 @@ package br.com.bv.vo;
 
 import java.util.List;
 
+import br.com.compliance.nfe.jde.domain.F55IJC02;
 import br.com.compliance.nfe.jde.domain.F55IJC80;
 import br.com.compliance.nfe.jde.domain.F55IJC80Id;
 import br.com.compliance.nfe.jde.domain.F55IJC81;
@@ -18,12 +19,8 @@ public class EnvioVO {
 	private List<F55IJC84> participanteNFeList;	
 	private java.lang.String codigoMultOrg;
 	private java.lang.String hashMultOrg;
-	//private F76B01TE f76b01te;
-	
-	
-	/*NFe4.0*/
-	//private List<F55IJC90> formaPgtoList;
-	
+
+	private F55IJC02 legado;
 	
 	public EnvioVO(){
 		
@@ -99,26 +96,11 @@ public class EnvioVO {
 		this.hashMultOrg = hashMultOrg;
 	}
 
-	/*
-
-	public F76B01TE getF76b01te() {
-		return f76b01te;
+	public F55IJC02 getLegado() {
+		return legado;
 	}
 
-
-	public void setF76b01te(F76B01TE f76b01te) {
-		this.f76b01te = f76b01te;
+	public void setLegado(F55IJC02 legado) {
+		this.legado = legado;
 	}
-
-
-	public List<F55IJC90> getFormaPgtoList() {
-		return formaPgtoList;
-	}
-
-
-	public void setFormaPgtoList(List<F55IJC90> formaPgtoList) {
-		this.formaPgtoList = formaPgtoList;
-	}
-	*/
-	
 }

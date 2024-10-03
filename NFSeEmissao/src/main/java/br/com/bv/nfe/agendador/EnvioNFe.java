@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-import br.com.bv.vo.CaminhosVO;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -53,7 +53,8 @@ public class EnvioNFe implements Job {
 			//servicesVO.setServicoServiceURL(servicoServiceURL);
 
 			CaminhosVO caminhosVO = new CaminhosVO(properties.getProperty("envioRecebidoXML").trim(),
-					properties.getProperty("envioProcessamentoXML").trim(),properties.getProperty("envioFinalizadoXML").trim());
+					properties.getProperty("envioProcessamentoXML").trim(),properties.getProperty("envioFinalizadoXML").trim(),
+					properties.getProperty("envioErroXML").trim());
 			
 			eCtrl.inicializaProcesso(servicesVO, caminhosVO);
 

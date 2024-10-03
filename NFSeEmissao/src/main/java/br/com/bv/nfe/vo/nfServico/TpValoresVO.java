@@ -10,7 +10,8 @@ public class TpValoresVO {
 			throws Exception {
 
 		TpValores valores = new TpValores();
-		valores.setVlServico(vlServico.divide(new BigDecimal(100)));
+		//valores.setVlServico(vlServico.divide(new BigDecimal(100)));
+		valores.setVlServico(vlServico);
 		return valores;
 
 	}

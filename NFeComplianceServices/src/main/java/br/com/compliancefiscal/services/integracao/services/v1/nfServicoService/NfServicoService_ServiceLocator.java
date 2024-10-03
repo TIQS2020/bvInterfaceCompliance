@@ -22,9 +22,14 @@ public class NfServicoService_ServiceLocator extends org.apache.axis.client.Serv
     }
 
     // Use to get a proxy class for nfServicoServiceSOAP
-    private java.lang.String nfServicoServiceSOAP_address;
+    private java.lang.String nfServicoServiceSOAP_address ;
 
-    public void setNfServicoServiceSOAP_address(java.lang.String nfServicoServiceSOAP_address) {
+    public java.lang.String getNfServicoServiceSOAP_address() {
+		return nfServicoServiceSOAP_address;
+	}
+
+
+	public void setNfServicoServiceSOAP_address(java.lang.String nfServicoServiceSOAP_address) {
 		this.nfServicoServiceSOAP_address = nfServicoServiceSOAP_address;
 	}
 

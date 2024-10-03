@@ -35,13 +35,13 @@ public class TpParticipanteVO {
 					p.getJCCH3(), p.getJCIDNO().toString(), new BigInteger(p.getJCAA08()), new BigInteger(p.getJCKA01().toString()),
 					p.getJCWTXT(), ""// idEstrangeiro
 			);
-			participante = new TpParticipante(p.getJCDQ01(), endereco, contato, documentos);
+			participante = new TpParticipante(p.getJCDQ01(), endereco, contato, documentos, null);
 		}else {
 			TpEndereco endereco = new TpEndereco(p.getJCQ60(), p.getJCPDSC(), p.getJCTXLN(), "....", p.getJCPP01(),
 					p.getJCCH3(), p.getJCIDNO().toString(), new BigInteger(p.getJCAA08()), new BigInteger(p.getJCKA01().toString()),
 					p.getJCWTXT(), ""// idEstrangeiro
 			);
-			participante = new TpParticipante(p.getJCDQ01(), endereco, contato,null);
+			participante = new TpParticipante(p.getJCDQ01(), endereco, contato,null, null);
 		}	
 
 

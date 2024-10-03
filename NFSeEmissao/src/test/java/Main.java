@@ -3,8 +3,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import br.com.bv.nfe.controle.EnvioControle;
-import br.com.bv.vo.CaminhosVO;
 import br.com.bv.vo.ServicesVO;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 
 public class Main {
 
@@ -41,7 +41,8 @@ System.out.println("RODANDO");
 			// servicesVO.setServicoServiceURL(servicoServiceURL);
 
 			CaminhosVO caminhosVO = new CaminhosVO(properties.getProperty("envioRecebidoXML").trim(),
-					properties.getProperty("envioProcessamentoXML").trim(),properties.getProperty("envioFinalizadoXML").trim());
+					properties.getProperty("envioProcessamentoXML").trim(),properties.getProperty("envioFinalizadoXML").trim(),
+					properties.getProperty("envioErroXML").trim());
 
 			eCtrl.inicializaProcesso(servicesVO, caminhosVO);
 

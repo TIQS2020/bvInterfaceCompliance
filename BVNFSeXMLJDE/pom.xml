@@ -5,8 +5,8 @@
 	<groupId>BV</groupId>
 	<artifactId>BVNFSeXMLJDE</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>NFSeXMLJDE</name>
+	<packaging>jar</packaging>
+	<name>BVNFSeXMLJDE</name>
 	<dependencies>		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>

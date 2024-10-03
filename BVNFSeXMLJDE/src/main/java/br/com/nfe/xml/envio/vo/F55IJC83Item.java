@@ -1,9 +1,12 @@
 package br.com.nfe.xml.envio.vo;
 
+import br.com.nfe.util.BigDecimalAdapter;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigDecimal;
 
 public class F55IJC83Item {
-	
+
 	private Integer JCNSP;
 	private BigDecimal JCAEXP;
 	private String JCKI03;
@@ -25,11 +28,10 @@ public class F55IJC83Item {
 	private String JCURCD;
 	private String JCURC1;
 	private String JCURC2;
-	private String JCCRPR;
 	private String JCDDJ;
-	private String JCDDN;
-	private String JCDCP;
-	private String JCADSC;
+	private String JCCRPR;
+
+
 
 
 	public F55IJC83Item() {
@@ -44,6 +46,7 @@ public class F55IJC83Item {
 		this.JCNSP = JCNSP;
 	}
 
+	@XmlJavaTypeAdapter(BigDecimalAdapter.class)
 	public BigDecimal getJCAEXP() {
 		return JCAEXP;
 	}
@@ -68,6 +71,7 @@ public class F55IJC83Item {
 		this.JCCHAR = JCCHAR;
 	}
 
+	@XmlJavaTypeAdapter(BigDecimalAdapter.class)
 	public BigDecimal getJCAA() {
 		return JCAA;
 	}
@@ -76,6 +80,7 @@ public class F55IJC83Item {
 		this.JCAA = JCAA;
 	}
 
+	@XmlJavaTypeAdapter(BigDecimalAdapter.class)
 	public BigDecimal getJCAA1() {
 		return JCAA1;
 	}
@@ -164,6 +169,7 @@ public class F55IJC83Item {
 		this.JCURAB = JCURAB;
 	}
 
+	@XmlJavaTypeAdapter(BigDecimalAdapter.class)
 	public BigDecimal getJCURAT() {
 		return JCURAT;
 	}
@@ -204,14 +210,6 @@ public class F55IJC83Item {
 		this.JCURC2 = JCURC2;
 	}
 
-	public String getJCCRPR() {
-		return JCCRPR;
-	}
-
-	public void setJCCRPR(String JCCRPR) {
-		this.JCCRPR = JCCRPR;
-	}
-
 	public String getJCDDJ() {
 		return JCDDJ;
 	}
@@ -220,27 +218,11 @@ public class F55IJC83Item {
 		this.JCDDJ = JCDDJ;
 	}
 
-	public String getJCDDN() {
-		return JCDDN;
+	public String getJCCRPR() {
+		return JCCRPR;
 	}
 
-	public void setJCDDN(String JCDDN) {
-		this.JCDDN = JCDDN;
-	}
-
-	public String getJCDCP() {
-		return JCDCP;
-	}
-
-	public void setJCDCP(String JCDCP) {
-		this.JCDCP = JCDCP;
-	}
-
-	public String getJCADSC() {
-		return JCADSC;
-	}
-
-	public void setJCADSC(String JCADSC) {
-		this.JCADSC = JCADSC;
+	public void setJCCRPR(String JCCRPR) {
+		this.JCCRPR = JCCRPR;
 	}
 }

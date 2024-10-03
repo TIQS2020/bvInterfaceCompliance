@@ -3,9 +3,11 @@ package br.com.nfe.control;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.nfe.file.XMLFileCreate;
 import br.com.nfe.file.XMLMover;
 import br.com.nfe.file.XMLPathReader;
 import br.com.nfe.file.XMLReader;
@@ -14,12 +16,13 @@ import br.com.nfe.util.Operacao;
 import br.com.nfe.vo.ArquivoVo;
 import br.com.nfe.xml.cancelamento.XmlFileCancelamentoRoot;
 import br.com.nfe.xml.envio.XmlFileEnvioRoot;
+import br.com.nfe.xml.retorno.XmlFileRetornoRoot;
 
 public class XmlFileControl {
 
     private static final Logger logger = Logger.getLogger(XmlFileControl.class.getName());
 
-    public List<ArquivoVo> xmlTransformToObject(Operacao<?,?> operacao) {
+    public List<ArquivoVo> xmlTransformToObject(Operacao<?,?> operacao) throws Exception{
 
         logger.info("Iniciando o processo de controle de arquivos XML.");
 
@@ -79,9 +82,13 @@ public class XmlFileControl {
         return arquivoVolist;
     }
     
-    public void moveFile(String source, String dest) {
+    public void moveFile(String source, String dest) throws Exception{
         File sourceFile = new File(source);
         File destFile = new File(dest);
     	XMLMover.moveFile(sourceFile, destFile);
+    }
+
+    public boolean objectToRetornoXml(XmlFileRetornoRoot xmlFileRetornoRoot, String filePath, Class classe){
+        return XMLFileCreate.createXMLFile(xmlFileRetornoRoot, filePath, classe);
     }
 }

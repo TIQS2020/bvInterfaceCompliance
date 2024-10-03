@@ -5,6 +5,7 @@
 	<groupId>NFeCompliace</groupId>
 	<artifactId>NFeComplianceJPA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>NFeCompliaceJPA</name>
 	<description>Projeto de persistencia da NFE Compliance</description>
 	<dependencies>

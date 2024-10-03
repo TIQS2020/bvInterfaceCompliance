@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.bv.nfe.controle.CancelamentoControle;
 import br.com.bv.nfe.vo.ServicesVO;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
+
 
 /**
  * Servlet implementation class CancelamentoServlet
@@ -42,8 +44,23 @@ public class CancelamentoServlet extends HttpServlet {
 		ServicesVO servicesVO = new ServicesVO();
 		servicesVO.setCancelamentoServiceURL(cancelamentoServiceURL);
 		servicesVO.setConsultaServiceURL(consultaServiceURL);
-		
-		cancelCtrl.inicializaProcesso(servicesVO);
+
+
+		CaminhosVO caminhosVO = new CaminhosVO();
+
+		caminhosVO.setRecebido(request.getParameter("cancelamentoRecebidoXML"));
+		caminhosVO.setProcessando(request.getParameter("cancelamentoProcessamentoXML"));
+		caminhosVO.setFinalizado(request.getParameter("cancelamentoFinalizadoXML"));
+		caminhosVO.setErro(request.getParameter("cancelamentoErroXML"));
+
+
+
+		/*
+		CaminhosVO caminhosVO = new CaminhosVO(request.getParameter("cancelamentoRecebidoXML"),
+				request.getParameter("cancelamentoProcessamentoXML"),request.getParameter("cancelamentoFinalizadoXML"),
+				request.getParameter("cancelamentoErroXML"));
+		*/
+		cancelCtrl.inicializaProcesso(servicesVO, caminhosVO);
 		
 	}
 

@@ -12,7 +12,7 @@ public class F55IJC81 {
 		// TODO Auto-generated constructor stub
 	}
 
-	@XmlElement(name = "ITEM")
+	@XmlElement(name = "Item")
 	public List<F55IJC81Item> getItem() {
 		return item;
 	}

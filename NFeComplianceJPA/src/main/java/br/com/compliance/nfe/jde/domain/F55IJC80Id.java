@@ -102,10 +102,14 @@ public class F55IJC80Id implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "F55IJC80Id{" +
+				"JCBNNF=" + JCBNNF +
+				", JCBSER='" + JCBSER + '\'' +
+				", JCN001=" + JCN001 +
+				", JCDCT='" + JCDCT + '\'' +
+				'}';
+	}
 }

@@ -74,9 +74,19 @@ public class NfServicos  implements java.io.Serializable {
 
     private java.lang.String nroAutNfs;
 
+    private java.lang.String codVerifNfs;
+
     private java.util.Date dtAutNfs;
 
     private java.lang.String codNatOper;
+
+    private java.util.Date dtQuitacao;
+
+    private java.math.BigDecimal vlTotReceb;
+
+    private br.com.compliancefiscal.modelo.integracao.domain.v1.tiposGenericos.TpCpfCnpj cpfCnpj_scp;
+
+    private java.lang.String chaveNfsePadNac;
 
     public NfServicos() {
     }
@@ -115,8 +125,13 @@ public class NfServicos  implements java.io.Serializable {
            org.apache.axis.types.NonNegativeInteger idNfErp,
            br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpNfProcReinf[] nfProcReinf,
            java.lang.String nroAutNfs,
+           java.lang.String codVerifNfs,
            java.util.Date dtAutNfs,
-           java.lang.String codNatOper) {
+           java.lang.String codNatOper,
+           java.util.Date dtQuitacao,
+           java.math.BigDecimal vlTotReceb,
+           br.com.compliancefiscal.modelo.integracao.domain.v1.tiposGenericos.TpCpfCnpj cpfCnpj_scp,
+           java.lang.String chaveNfsePadNac) {
            this.cpfCnpj = cpfCnpj;
            this.dmIndEmit = dmIndEmit;
            this.dmIndOper = dmIndOper;
@@ -150,8 +165,13 @@ public class NfServicos  implements java.io.Serializable {
            this.idNfErp = idNfErp;
            this.nfProcReinf = nfProcReinf;
            this.nroAutNfs = nroAutNfs;
+           this.codVerifNfs = codVerifNfs;
            this.dtAutNfs = dtAutNfs;
            this.codNatOper = codNatOper;
+           this.dtQuitacao = dtQuitacao;
+           this.vlTotReceb = vlTotReceb;
+           this.cpfCnpj_scp = cpfCnpj_scp;
+           this.chaveNfsePadNac = chaveNfsePadNac;
     }
 
 
@@ -840,6 +860,26 @@ public class NfServicos  implements java.io.Serializable {
 
 
     /**
+     * Gets the codVerifNfs value for this NfServicos.
+     * 
+     * @return codVerifNfs
+     */
+    public java.lang.String getCodVerifNfs() {
+        return codVerifNfs;
+    }
+
+
+    /**
+     * Sets the codVerifNfs value for this NfServicos.
+     * 
+     * @param codVerifNfs
+     */
+    public void setCodVerifNfs(java.lang.String codVerifNfs) {
+        this.codVerifNfs = codVerifNfs;
+    }
+
+
+    /**
      * Gets the dtAutNfs value for this NfServicos.
      * 
      * @return dtAutNfs
@@ -876,6 +916,86 @@ public class NfServicos  implements java.io.Serializable {
      */
     public void setCodNatOper(java.lang.String codNatOper) {
         this.codNatOper = codNatOper;
+    }
+
+
+    /**
+     * Gets the dtQuitacao value for this NfServicos.
+     * 
+     * @return dtQuitacao
+     */
+    public java.util.Date getDtQuitacao() {
+        return dtQuitacao;
+    }
+
+
+    /**
+     * Sets the dtQuitacao value for this NfServicos.
+     * 
+     * @param dtQuitacao
+     */
+    public void setDtQuitacao(java.util.Date dtQuitacao) {
+        this.dtQuitacao = dtQuitacao;
+    }
+
+
+    /**
+     * Gets the vlTotReceb value for this NfServicos.
+     * 
+     * @return vlTotReceb
+     */
+    public java.math.BigDecimal getVlTotReceb() {
+        return vlTotReceb;
+    }
+
+
+    /**
+     * Sets the vlTotReceb value for this NfServicos.
+     * 
+     * @param vlTotReceb
+     */
+    public void setVlTotReceb(java.math.BigDecimal vlTotReceb) {
+        this.vlTotReceb = vlTotReceb;
+    }
+
+
+    /**
+     * Gets the cpfCnpj_scp value for this NfServicos.
+     * 
+     * @return cpfCnpj_scp
+     */
+    public br.com.compliancefiscal.modelo.integracao.domain.v1.tiposGenericos.TpCpfCnpj getCpfCnpj_scp() {
+        return cpfCnpj_scp;
+    }
+
+
+    /**
+     * Sets the cpfCnpj_scp value for this NfServicos.
+     * 
+     * @param cpfCnpj_scp
+     */
+    public void setCpfCnpj_scp(br.com.compliancefiscal.modelo.integracao.domain.v1.tiposGenericos.TpCpfCnpj cpfCnpj_scp) {
+        this.cpfCnpj_scp = cpfCnpj_scp;
+    }
+
+
+    /**
+     * Gets the chaveNfsePadNac value for this NfServicos.
+     * 
+     * @return chaveNfsePadNac
+     */
+    public java.lang.String getChaveNfsePadNac() {
+        return chaveNfsePadNac;
+    }
+
+
+    /**
+     * Sets the chaveNfsePadNac value for this NfServicos.
+     * 
+     * @param chaveNfsePadNac
+     */
+    public void setChaveNfsePadNac(java.lang.String chaveNfsePadNac) {
+        this.chaveNfsePadNac = chaveNfsePadNac;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -989,12 +1109,27 @@ public class NfServicos  implements java.io.Serializable {
             ((this.nroAutNfs==null && other.getNroAutNfs()==null) || 
              (this.nroAutNfs!=null &&
               this.nroAutNfs.equals(other.getNroAutNfs()))) &&
+            ((this.codVerifNfs==null && other.getCodVerifNfs()==null) || 
+             (this.codVerifNfs!=null &&
+              this.codVerifNfs.equals(other.getCodVerifNfs()))) &&
             ((this.dtAutNfs==null && other.getDtAutNfs()==null) || 
              (this.dtAutNfs!=null &&
               this.dtAutNfs.equals(other.getDtAutNfs()))) &&
             ((this.codNatOper==null && other.getCodNatOper()==null) || 
              (this.codNatOper!=null &&
-              this.codNatOper.equals(other.getCodNatOper())));
+              this.codNatOper.equals(other.getCodNatOper()))) &&
+            ((this.dtQuitacao==null && other.getDtQuitacao()==null) || 
+             (this.dtQuitacao!=null &&
+              this.dtQuitacao.equals(other.getDtQuitacao()))) &&
+            ((this.vlTotReceb==null && other.getVlTotReceb()==null) || 
+             (this.vlTotReceb!=null &&
+              this.vlTotReceb.equals(other.getVlTotReceb()))) &&
+            ((this.cpfCnpj_scp==null && other.getCpfCnpj_scp()==null) || 
+             (this.cpfCnpj_scp!=null &&
+              this.cpfCnpj_scp.equals(other.getCpfCnpj_scp()))) &&
+            ((this.chaveNfsePadNac==null && other.getChaveNfsePadNac()==null) || 
+             (this.chaveNfsePadNac!=null &&
+              this.chaveNfsePadNac.equals(other.getChaveNfsePadNac())));
         __equalsCalc = null;
         return _equals;
     }
@@ -1129,11 +1264,26 @@ public class NfServicos  implements java.io.Serializable {
         if (getNroAutNfs() != null) {
             _hashCode += getNroAutNfs().hashCode();
         }
+        if (getCodVerifNfs() != null) {
+            _hashCode += getCodVerifNfs().hashCode();
+        }
         if (getDtAutNfs() != null) {
             _hashCode += getDtAutNfs().hashCode();
         }
         if (getCodNatOper() != null) {
             _hashCode += getCodNatOper().hashCode();
+        }
+        if (getDtQuitacao() != null) {
+            _hashCode += getDtQuitacao().hashCode();
+        }
+        if (getVlTotReceb() != null) {
+            _hashCode += getVlTotReceb().hashCode();
+        }
+        if (getCpfCnpj_scp() != null) {
+            _hashCode += getCpfCnpj_scp().hashCode();
+        }
+        if (getChaveNfsePadNac() != null) {
+            _hashCode += getChaveNfsePadNac().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -1238,6 +1388,7 @@ public class NfServicos  implements java.io.Serializable {
         elemField.setFieldName("dmNatOper");
         elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "dmNatOper"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/v1/tiposGenericos", "tpDominio"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
@@ -1272,6 +1423,7 @@ public class NfServicos  implements java.io.Serializable {
         elemField.setFieldName("dmStProc");
         elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "dmStProc"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "integer"));
+        elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
@@ -1367,6 +1519,13 @@ public class NfServicos  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("codVerifNfs");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "codVerifNfs"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("dtAutNfs");
         elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "dtAutNfs"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "date"));
@@ -1376,6 +1535,34 @@ public class NfServicos  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("codNatOper");
         elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "codNatOper"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("dtQuitacao");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "dtQuitacao"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "date"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("vlTotReceb");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "vlTotReceb"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/v1/tiposGenericos", "decimalTwoPrec"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cpfCnpj_scp");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "cpfCnpj_scp"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/v1/tiposGenericos", "tpCpfCnpj"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("chaveNfsePadNac");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "chaveNfsePadNac"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

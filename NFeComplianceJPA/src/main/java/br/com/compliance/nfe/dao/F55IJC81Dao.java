@@ -90,4 +90,14 @@ public class F55IJC81Dao {
 		}
 
 	}
+
+	public F55IJC81 findById(F55IJC80Id id){
+		EntityManager manager = EntityManagerHelper.getEntityManager();
+		TypedQuery<F55IJC81> query = manager.createQuery("SELECT f FROM F55IJC81 f WHERE f.id = :id", F55IJC81.class);
+		query.setParameter("id", id);
+		List<F55IJC81> f55IJC81List = query.getResultList();
+		manager.close();
+		return f55IJC81List.get(0);
+	}
+
 }

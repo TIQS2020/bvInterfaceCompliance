@@ -98,18 +98,19 @@ public class F55IJC80Dao {
 		CriteriaQuery<F55IJC80> cQuery = cb.createQuery(F55IJC80.class);
 		Root<F55IJC80> cabecalho = cQuery.from(F55IJC80.class);
 
-		Expression<F55IJC80> eLote = cabecalho.get("JCUK02");
 		Expression<F55IJC80> eStatus = cabecalho.get("JCEV15");
+		//Expression<F55IJC80> eA204Status = cabecalho.get("JCA204");
 		Expression<F55IJC80> eJcdej = cabecalho.get("JCDEJ");
 
 		String[] notInClause = { "#", "F" };
 		List<String> notInClauseArr = Arrays.asList(notInClause);
 
-		Predicate pLote = cb.isNotNull(eLote);
 		Predicate pStatus = eStatus.in(notInClauseArr).not();
 		Predicate pJcedj = cb.notEqual(eJcdej, "0");
+		//Predicate pA204Status = cb.equal(eA204Status, "P");
 
-		Predicate predicate = cb.and(pStatus, pLote, pJcedj);
+		//Predicate predicate = cb.and(pStatus, pJcedj, pA204Status);
+		Predicate predicate = cb.and(pStatus, pJcedj);
 
 		cQuery.select(cabecalho);
 		cQuery.where(predicate);
@@ -123,8 +124,9 @@ public class F55IJC80Dao {
 		return listF55IJC80;
 	}
 
-	public int updateF55IJC80Retorno(F55IJC80 f) throws JDBCException, SQLException {
+	public void updateF55IJC80Retorno(F55IJC80 f) throws JDBCException, SQLException {
 
+		/*
 		StringBuilder sbQuery = new StringBuilder();
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -167,7 +169,7 @@ public class F55IJC80Dao {
 			 * parametros);
 			 * 
 			 * LogUtil.logInfo(mapLog, tabela);
-			 */
+
 
 			linhas = st.executeUpdate();
 			conn.commit();
@@ -179,10 +181,29 @@ public class F55IJC80Dao {
 		}
 
 		return linhas;
+	*/
 	}
 
 	public void updateF55IJC80(F55IJC80 f) throws JDBCException, SQLException {
 
+		EntityManager manager = EntityManagerHelper.getEntityManager();
+
+		try {
+			manager.getTransaction().begin();
+			manager.merge(f);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (manager.getTransaction().isActive()) {
+				manager.getTransaction().rollback();
+			}
+		} finally {
+			if (manager.isOpen()) {
+				manager.close();
+			}
+		}
+
+		/*
 		StringBuilder sbQuery = new StringBuilder();
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -221,7 +242,7 @@ public class F55IJC80Dao {
 			 * parametros);
 			 * 
 			 * LogUtil.logInfo(mapLog, tabela);
-			 */
+
 			st.executeUpdate();
 			conn.commit();
 
@@ -231,7 +252,7 @@ public class F55IJC80Dao {
 			st.close();
 			conn.close();
 		}
-
+*/
 	}
 
 	public void updateF55IJC80Erro(F55IJC80Id f) throws JDBCException, SQLException {
@@ -333,8 +354,6 @@ public class F55IJC80Dao {
 			if (manager.getTransaction().isActive()) {
 				manager.getTransaction().rollback();
 			}
-		} finally {
-			manager.close();
 		}
 
 	}
