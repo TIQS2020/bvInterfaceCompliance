@@ -32,13 +32,13 @@ public class TpParticipanteVO {
 		if("1058".equalsIgnoreCase(p.getJCKA01().toString())) {
 			TpDocumentos documentos = new TpDocumentos(c, p.getJCCMT1(), p.getJCCMT2(), p.getJCAA09());
 			TpEndereco endereco = new TpEndereco(p.getJCQ60(), p.getJCPDSC(), p.getJCTXLN(), p.getJCPP02(), p.getJCPP01(),
-					p.getJCCH3(), p.getJCIDNO().toString(), new BigInteger(p.getJCAA08()), new BigInteger(p.getJCKA01().toString()),
+					p.getJCCH3(), p.getJCIDNO().toString(), p.getJCAA08().trim() != null && !"".equalsIgnoreCase(p.getJCAA08().trim()) ? new BigInteger(p.getJCAA08()) : null, new BigInteger(p.getJCKA01().toString()),
 					p.getJCWTXT(), ""// idEstrangeiro
 			);
 			participante = new TpParticipante(p.getJCDQ01(), endereco, contato, documentos, null);
 		}else {
 			TpEndereco endereco = new TpEndereco(p.getJCQ60(), p.getJCPDSC(), p.getJCTXLN(), "....", p.getJCPP01(),
-					p.getJCCH3(), p.getJCIDNO().toString(), new BigInteger(p.getJCAA08()), new BigInteger(p.getJCKA01().toString()),
+					p.getJCCH3(), p.getJCIDNO().toString(), p.getJCAA08() != null ? new BigInteger(p.getJCAA08()) : null, new BigInteger(p.getJCKA01().toString()),
 					p.getJCWTXT(), ""// idEstrangeiro
 			);
 			participante = new TpParticipante(p.getJCDQ01(), endereco, contato,null, null);
