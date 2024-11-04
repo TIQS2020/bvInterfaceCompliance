@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import br.com.bv.nfe.controle.RetornoControle;
 import br.com.compliance.nfe.util.AppConfig;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 
 public class MainRetorno {
 
@@ -18,8 +19,10 @@ public class MainRetorno {
 
 			String retornoServiceURL = properties.getProperty("consultaGenerica").trim();
 
+			CaminhosVO caminhosVO = new CaminhosVO(null,null,properties.getProperty("retornoFinalizadoXML").trim(), null);
+
 			RetornoControle rCtrl = new RetornoControle();
-			rCtrl.inicializaProcesso(retornoServiceURL);
+			rCtrl.inicializaProcesso(retornoServiceURL, caminhosVO);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

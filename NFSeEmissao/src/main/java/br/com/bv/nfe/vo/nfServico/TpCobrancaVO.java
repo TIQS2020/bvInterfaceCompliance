@@ -23,7 +23,7 @@ public class TpCobrancaVO {
 		BigDecimal valorDesconto = new BigDecimal("0");
 		BigDecimal valorOriginal = new BigDecimal("0");
 		
-		cobranca.setNroFatura(header.getJCBNNF().toString() + header.getJCBSER());
+		cobranca.setNroFatura(header.getId().getJCBNNF().toString() + header.getId().getJCBSER());
 		cobranca.setDmIndEmit(new NonNegativeInteger(header.getJCEV02().toString()));
 		cobranca.setDescrTit("DUPLICATA");	
 		

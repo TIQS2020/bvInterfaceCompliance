@@ -12,7 +12,7 @@ public class TpItensServicoVO {
 	public static TpItens montaItem(F55IJC81 it) throws Exception {
 		TpItens item = new TpItens();
 		
-		item.setNroItem(new NonNegativeInteger(it.getJCUKID().toString()));
+		item.setNroItem(new NonNegativeInteger(it.getId().getJCUKID().toString()));
 		item.setCodItemServ(it.getJCLITM());
 		item.setDescricao(it.getJCDSC1() + it.getJCDSC2());
 		item.setCfop(new NonNegativeInteger(it.getJCBRNOP().toString()));

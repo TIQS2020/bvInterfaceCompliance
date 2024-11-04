@@ -1,8 +1,10 @@
 package br.com.compliance.nfe.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.CacheStoreMode;
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,6 +14,7 @@ import javax.persistence.criteria.Root;
 
 import org.eclipse.persistence.config.QueryHints;
 
+import br.com.compliance.nfe.jdbc.JDBCException;
 import br.com.compliance.nfe.jde.domain.F55IJC80Id;
 import br.com.compliance.nfe.jde.domain.F55IJC81;
 import br.com.compliance.nfe.jpa.EntityManagerHelper;
@@ -67,6 +70,34 @@ public class F55IJC81Dao {
 		 * JPAUtil.closeEntityManager(); JPAUtil.closeEntityManagerFactory();
 		 */
 
+	}
+
+	public void insertF55IJC81(F55IJC81 f) throws JDBCException, SQLException {
+
+		EntityManager manager = EntityManagerHelper.getEntityManager();
+
+		try {
+			manager.getTransaction().begin();
+			manager.persist(f);
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (manager.getTransaction().isActive()) {
+				manager.getTransaction().rollback();
+			}
+		} finally {
+			manager.close();
+		}
+
+	}
+
+	public F55IJC81 findById(F55IJC80Id id){
+		EntityManager manager = EntityManagerHelper.getEntityManager();
+		TypedQuery<F55IJC81> query = manager.createQuery("SELECT f FROM F55IJC81 f WHERE f.id = :id", F55IJC81.class);
+		query.setParameter("id", id);
+		List<F55IJC81> f55IJC81List = query.getResultList();
+		manager.close();
+		return f55IJC81List.get(0);
 	}
 
 }

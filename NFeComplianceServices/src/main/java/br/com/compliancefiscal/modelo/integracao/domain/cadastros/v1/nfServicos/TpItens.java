@@ -40,6 +40,8 @@ public class TpItens  implements java.io.Serializable {
 
     private java.lang.String codCentroCusto;
 
+    private java.math.BigDecimal vlDesc;
+
     private br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpValores valores;
 
     private br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpImpostos[] impostos;
@@ -70,6 +72,7 @@ public class TpItens  implements java.io.Serializable {
            java.lang.String cidadeIbge,
            java.lang.String codCta,
            java.lang.String codCentroCusto,
+           java.math.BigDecimal vlDesc,
            br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpValores valores,
            br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpImpostos[] impostos,
            java.lang.String cdCidadeBeneficFiscal,
@@ -91,6 +94,7 @@ public class TpItens  implements java.io.Serializable {
            this.cidadeIbge = cidadeIbge;
            this.codCta = codCta;
            this.codCentroCusto = codCentroCusto;
+           this.vlDesc = vlDesc;
            this.valores = valores;
            this.impostos = impostos;
            this.cdCidadeBeneficFiscal = cdCidadeBeneficFiscal;
@@ -420,6 +424,26 @@ public class TpItens  implements java.io.Serializable {
 
 
     /**
+     * Gets the vlDesc value for this TpItens.
+     * 
+     * @return vlDesc
+     */
+    public java.math.BigDecimal getVlDesc() {
+        return vlDesc;
+    }
+
+
+    /**
+     * Sets the vlDesc value for this TpItens.
+     * 
+     * @param vlDesc
+     */
+    public void setVlDesc(java.math.BigDecimal vlDesc) {
+        this.vlDesc = vlDesc;
+    }
+
+
+    /**
      * Gets the valores value for this TpItens.
      * 
      * @return valores
@@ -586,6 +610,9 @@ public class TpItens  implements java.io.Serializable {
             ((this.codCentroCusto==null && other.getCodCentroCusto()==null) || 
              (this.codCentroCusto!=null &&
               this.codCentroCusto.equals(other.getCodCentroCusto()))) &&
+            ((this.vlDesc==null && other.getVlDesc()==null) || 
+             (this.vlDesc!=null &&
+              this.vlDesc.equals(other.getVlDesc()))) &&
             ((this.valores==null && other.getValores()==null) || 
              (this.valores!=null &&
               this.valores.equals(other.getValores()))) &&
@@ -659,6 +686,9 @@ public class TpItens  implements java.io.Serializable {
         }
         if (getCodCentroCusto() != null) {
             _hashCode += getCodCentroCusto().hashCode();
+        }
+        if (getVlDesc() != null) {
+            _hashCode += getVlDesc().hashCode();
         }
         if (getValores() != null) {
             _hashCode += getValores().hashCode();
@@ -794,6 +824,13 @@ public class TpItens  implements java.io.Serializable {
         elemField.setFieldName("codCentroCusto");
         elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "codCentroCusto"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("vlDesc");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "vlDesc"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/v1/tiposGenericos", "decimalTwoPrec"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

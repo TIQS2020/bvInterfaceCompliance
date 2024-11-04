@@ -17,7 +17,18 @@ public class F55IJC81Id implements Serializable{
 	private String JCDCT;
 	private Long JCUKID;
 	
-	public F55IJC81Id(){}
+	public F55IJC81Id(){}	
+
+	public F55IJC81Id(Integer jCBNNF, String jCBSER, Long jCN001, String jCDCT, Long jCUKID) {
+		super();
+		JCBNNF = jCBNNF;
+		JCBSER = jCBSER;
+		JCN001 = jCN001;
+		JCDCT = jCDCT;
+		JCUKID = jCUKID;
+	}
+
+
 
 	public Integer getJCBNNF() {
 		return JCBNNF;

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quartz.DisallowConcurrentExecution;
@@ -44,7 +45,12 @@ public class CancelaNFe implements Job {
 			servicesVO.setCancelamentoServiceURL(cancelamentoServiceURL);
 			servicesVO.setConsultaServiceURL(consultaServiceURL);
 
-			cancelCtrl.inicializaProcesso(servicesVO);
+			CaminhosVO caminhosVO = new CaminhosVO(properties.getProperty("cancelamentoRecebidoXML").trim(),
+					properties.getProperty("cancelamentoProcessamentoXML").trim(),properties.getProperty("cancelamentoFinalizadoXML").trim(),
+					properties.getProperty("cancelamentoErroXML").trim());
+
+
+			cancelCtrl.inicializaProcesso(servicesVO, caminhosVO);
 		} catch (Exception ex) {
 			log.error("## Erro Job Cancelamento: " + ex);
 		}

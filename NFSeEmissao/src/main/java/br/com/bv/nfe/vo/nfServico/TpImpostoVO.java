@@ -20,8 +20,19 @@ public class TpImpostoVO {
 		if(codImposto.compareTo(new BigInteger("4")) == 0
 				|| codImposto.compareTo(new BigInteger("5")) == 0) {
 			imposto.setCodSt(codSt);
-		}		
-		
+		}
+
+		imposto.setVlBaseCalc(vlBaseCalc);
+		imposto.setAliquota(aliquota);
+
+		imposto.setVlImpTrib(vlImpTrib);
+		imposto.setNaturezaReceitaPisCofins(new NonNegativeInteger(naturezaReceitaPisCofins));
+
+		if("".equalsIgnoreCase(retencaoInss) && retencaoInss != null) {
+			imposto.setTipoRetencaoImposto(retencaoInss);
+		}
+
+		/*
 		imposto.setVlBaseCalc(vlBaseCalc.divide(new BigDecimal(100)));		
 		
 		if(codImposto.compareTo(new BigInteger("12")) == 0 ||
@@ -31,18 +42,12 @@ public class TpImpostoVO {
 			imposto.setAliquota(aliquota.divide(new BigDecimal(100000)));
 		}
 		imposto.setVlImpTrib(vlImpTrib.divide(new BigDecimal(100)));
-//		imposto.setVlDeducao(vlDeducao);
 		imposto.setNaturezaReceitaPisCofins(new NonNegativeInteger(naturezaReceitaPisCofins));
 		
 		if("".equalsIgnoreCase(retencaoInss) && retencaoInss != null) {
 			imposto.setTipoRetencaoImposto(retencaoInss);
 		}
-		
-//		imposto.setCodReceita(codReceita);
-
-//		TpAposentEspecial aposentEspecial = new TpAposentEspecial(BigDecimal.TEN, BigDecimal.TEN);
-//		imposto.setAposentEspecial(aposentEspecial);
-
+		*/
 		return imposto;
 
 	}

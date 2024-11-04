@@ -10,14 +10,16 @@ import javax.persistence.Entity;
 public class F55IJC84 {
 	@EmbeddedId
 	private F55IJC84Id id;
-	
+/*INSERT TEST
 	private Integer JCBNNF;
 	private String JCBSER;
 	private Long JCN001;
 	private String JCDCT;
-	
+*/
 	private String JCKY1;
-	private Integer JCIA01;
+/*INSERT TEST
+ * 	private Integer JCIA01;
+ */
 	private String JCEV02;
 	private String JCDQ01;
 	private String JCDQ02;
@@ -61,20 +63,94 @@ public class F55IJC84 {
 	private String JCURCD;
 	private String JCURC1;
 	private String JCURC2;
-	
-	/*novos campos 03/02/16*/
+
+	/* novos campos 03/02/16 */
 	private String JCWTXT;
 	private String JCAA10;
 	private Integer JCAN8;
-	
+
 	private String JCAAIL;
 	private String JCDESTIN;
-	
+
 	private String JCEMAL;
 	private String JCEV05;
-	
-	public F55IJC84(){}
 
+	public F55IJC84() {
+	}	
+
+	public F55IJC84(F55IJC84Id id, String jCKY1, String jCEV02, String jCDQ01, String jCDQ02, Integer jCIDNO,
+			String jCPP01, String jCAA02, Integer jCKA01, String jCQ60, String jCPDSC, String jCTXLN, String jCPP02,
+			String jCAA08, String jCCMT1, String jCCMT2, String jCAA09, String jCAA04, String jCA901, String jCCL02,
+			String jCCH2, String jCCH3, String jCEV03, String jCEV04, String jCAA12, String jCAA11, String jCKI08,
+			String jCTD1, String jCMSFX, String jCRT01, String jCAA20, Integer jCXDEC, String jCUSER, String jCTORG,
+			String jCPID, String jCJOBN, String jCUPMJ, Integer jCUPMT, String jCURRF, Integer jCURAB,
+			BigDecimal jCURAT, String jCURDT, String jCURCD, String jCURC1, String jCURC2, String jCWTXT, String jCAA10,
+			Integer jCAN8, String jCAAIL, String jCDESTIN, String jCEMAL, String jCEV05) {
+		super();
+		this.id = id;
+		JCKY1 = jCKY1;
+		JCEV02 = jCEV02;
+		JCDQ01 = jCDQ01;
+		JCDQ02 = jCDQ02;
+		JCIDNO = jCIDNO;
+		JCPP01 = jCPP01;
+		JCAA02 = jCAA02;
+		JCKA01 = jCKA01;
+		JCQ60 = jCQ60;
+		JCPDSC = jCPDSC;
+		JCTXLN = jCTXLN;
+		JCPP02 = jCPP02;
+		JCAA08 = jCAA08;
+		JCCMT1 = jCCMT1;
+		JCCMT2 = jCCMT2;
+		JCAA09 = jCAA09;
+		JCAA04 = jCAA04;
+		JCA901 = jCA901;
+		JCCL02 = jCCL02;
+		JCCH2 = jCCH2;
+		JCCH3 = jCCH3;
+		JCEV03 = jCEV03;
+		JCEV04 = jCEV04;
+		JCAA12 = jCAA12;
+		JCAA11 = jCAA11;
+		JCKI08 = jCKI08;
+		JCTD1 = jCTD1;
+		JCMSFX = jCMSFX;
+		JCRT01 = jCRT01;
+		JCAA20 = jCAA20;
+		JCXDEC = jCXDEC;
+		JCUSER = jCUSER;
+		JCTORG = jCTORG;
+		JCPID = jCPID;
+		JCJOBN = jCJOBN;
+		JCUPMJ = jCUPMJ;
+		JCUPMT = jCUPMT;
+		JCURRF = jCURRF;
+		JCURAB = jCURAB;
+		JCURAT = jCURAT;
+		JCURDT = jCURDT;
+		JCURCD = jCURCD;
+		JCURC1 = jCURC1;
+		JCURC2 = jCURC2;
+		JCWTXT = jCWTXT;
+		JCAA10 = jCAA10;
+		JCAN8 = jCAN8;
+		JCAAIL = jCAAIL;
+		JCDESTIN = jCDESTIN;
+		JCEMAL = jCEMAL;
+		JCEV05 = jCEV05;
+	}
+
+
+
+	public F55IJC84Id getId() {
+		return id;
+	}
+
+	public void setId(F55IJC84Id id) {
+		this.id = id;
+	}
+/*INSERT TEST
 	public Integer getJCBNNF() {
 		return JCBNNF;
 	}
@@ -106,7 +182,7 @@ public class F55IJC84 {
 	public void setJCDCT(String jCDCT) {
 		JCDCT = jCDCT;
 	}
-
+*/
 	public String getJCKY1() {
 		return JCKY1;
 	}
@@ -114,7 +190,7 @@ public class F55IJC84 {
 	public void setJCKY1(String jCKY1) {
 		JCKY1 = jCKY1;
 	}
-
+/*INSERT TEST
 	public Integer getJCIA01() {
 		return JCIA01;
 	}
@@ -122,7 +198,7 @@ public class F55IJC84 {
 	public void setJCIA01(Integer jCIA01) {
 		JCIA01 = jCIA01;
 	}
-
+*/
 	public String getJCEV02() {
 		return JCEV02;
 	}
@@ -505,8 +581,8 @@ public class F55IJC84 {
 
 	public void setJCDESTIN(String jCDESTIN) {
 		JCDESTIN = jCDESTIN;
-	}	
-	
+	}
+
 	public String getJCEMAL() {
 		return JCEMAL;
 	}
@@ -521,9 +597,6 @@ public class F55IJC84 {
 
 	public void setJCEV05(String jCEV05) {
 		JCEV05 = jCEV05;
-	}	
-	
-	
-	
+	}
 
 }

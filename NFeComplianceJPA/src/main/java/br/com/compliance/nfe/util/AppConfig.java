@@ -37,17 +37,20 @@ public class AppConfig {
 	}
 
 	private void loadConfigs() throws IOException {
-		InputStream input = new FileInputStream("C:/Java/resources/jdbc.properties");
-		//InputStream input = new FileInputStream("C:/Java/resources/jdbc.properties");
+		InputStream input = new FileInputStream("C:/Java/resources/jdbc.properties");		
 		Properties properties = new Properties();
 		properties.load(input);
 
 		driver = properties.getProperty("driver").trim();
 		url = properties.getProperty("url").trim();
+
 		user = properties.getProperty("user").trim();
 		password = properties.getProperty("password").trim();
+
+/*
 		schemaDTA = properties.getProperty("schemaDTA").trim();
 		schemaCTL = properties.getProperty("schemaCTL").trim();
+*/
 		transactionType = properties.getProperty("transactionType").trim();
 		metadataSourceXmlFile = properties.getProperty("metadataSourceXmlFile").trim();
 		jpaLogginFile = properties.getProperty("jpaLogginFile").trim();

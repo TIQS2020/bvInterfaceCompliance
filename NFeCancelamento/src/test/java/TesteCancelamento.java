@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import br.com.bv.nfe.controle.CancelamentoControle;
 import br.com.bv.nfe.vo.ServicesVO;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 
 public class TesteCancelamento {
 	
@@ -20,8 +21,12 @@ public class TesteCancelamento {
 	    		ServicesVO servicesVO = new ServicesVO();
 	    		servicesVO.setCancelamentoServiceURL(cancelamentoServiceURL);
 	    		servicesVO.setConsultaServiceURL(consultaServiceURL);
-	    		
-	    		cancelCtrl.inicializaProcesso(servicesVO);	
+
+				 CaminhosVO caminhosVO = new CaminhosVO(properties.getProperty("cancelamentoRecebidoXML").trim(),
+						 properties.getProperty("cancelamentoProcessamentoXML").trim(),properties.getProperty("cancelamentoFinalizadoXML").trim(),
+						 properties.getProperty("cancelamentoErroXML").trim());
+
+				 cancelCtrl.inicializaProcesso(servicesVO, caminhosVO);
 	    		
 	        }catch(Exception ex){
 	        	ex.printStackTrace();	

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.bv.nfe.controle.RetornoControle;
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 
 /**
  * Servlet implementation class RetornoServlet
@@ -39,7 +40,8 @@ public class RetornoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RetornoControle rCtrl = new RetornoControle();
 		String retornoServiceURL = request.getParameter("retornoServiceURL");
-		rCtrl.inicializaProcesso(retornoServiceURL);
+		CaminhosVO caminhosVO = new CaminhosVO(null,null,request.getParameter(("retornoFinalizadoXML").trim()), null);
+		rCtrl.inicializaProcesso(retornoServiceURL, caminhosVO);
 	}
 
 }

@@ -16,6 +16,8 @@ public class TpParticipante  implements java.io.Serializable {
 
     private br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpDocumentos documentos;
 
+    private org.apache.axis.types.NonNegativeInteger utilEndEmit;
+
     public TpParticipante() {
     }
 
@@ -23,11 +25,13 @@ public class TpParticipante  implements java.io.Serializable {
            java.lang.String nome,
            br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpEndereco endereco,
            br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpContato contato,
-           br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpDocumentos documentos) {
+           br.com.compliancefiscal.modelo.integracao.domain.cadastros.v1.nfServicos.TpDocumentos documentos,
+           org.apache.axis.types.NonNegativeInteger utilEndEmit) {
            this.nome = nome;
            this.endereco = endereco;
            this.contato = contato;
            this.documentos = documentos;
+           this.utilEndEmit = utilEndEmit;
     }
 
 
@@ -110,6 +114,26 @@ public class TpParticipante  implements java.io.Serializable {
         this.documentos = documentos;
     }
 
+
+    /**
+     * Gets the utilEndEmit value for this TpParticipante.
+     * 
+     * @return utilEndEmit
+     */
+    public org.apache.axis.types.NonNegativeInteger getUtilEndEmit() {
+        return utilEndEmit;
+    }
+
+
+    /**
+     * Sets the utilEndEmit value for this TpParticipante.
+     * 
+     * @param utilEndEmit
+     */
+    public void setUtilEndEmit(org.apache.axis.types.NonNegativeInteger utilEndEmit) {
+        this.utilEndEmit = utilEndEmit;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof TpParticipante)) return false;
@@ -133,7 +157,10 @@ public class TpParticipante  implements java.io.Serializable {
               this.contato.equals(other.getContato()))) &&
             ((this.documentos==null && other.getDocumentos()==null) || 
              (this.documentos!=null &&
-              this.documentos.equals(other.getDocumentos())));
+              this.documentos.equals(other.getDocumentos()))) &&
+            ((this.utilEndEmit==null && other.getUtilEndEmit()==null) || 
+             (this.utilEndEmit!=null &&
+              this.utilEndEmit.equals(other.getUtilEndEmit())));
         __equalsCalc = null;
         return _equals;
     }
@@ -156,6 +183,9 @@ public class TpParticipante  implements java.io.Serializable {
         }
         if (getDocumentos() != null) {
             _hashCode += getDocumentos().hashCode();
+        }
+        if (getUtilEndEmit() != null) {
+            _hashCode += getUtilEndEmit().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -190,6 +220,13 @@ public class TpParticipante  implements java.io.Serializable {
         elemField.setFieldName("documentos");
         elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "documentos"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "tpDocumentos"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("utilEndEmit");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/cadastros/v1/nfServicos", "utilEndEmit"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://modelo.compliancefiscal.com.br/integracao/domain/v1/tiposGenericos", "tpDominio"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import br.com.nfe.xml.retorno.vo.CaminhosVO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quartz.DisallowConcurrentExecution;
@@ -35,7 +36,10 @@ public class RetornoNFe implements Job {
 			String retornoServiceURL = properties.getProperty("consultaGenerica").trim();
 
 			RetornoControle rCtrl = new RetornoControle();
-			rCtrl.inicializaProcesso(retornoServiceURL);
+
+			CaminhosVO caminhosVO = new CaminhosVO(null,null,properties.getProperty("retornoFinalizadoXML").trim(), null);
+
+			rCtrl.inicializaProcesso(retornoServiceURL, caminhosVO);
 
 		} catch (Exception ex) {
 			log.error("## Erro Job Retorno: " + ex);

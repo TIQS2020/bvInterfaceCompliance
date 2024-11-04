@@ -19,7 +19,7 @@ public class TpItensVO {
 		TpItens item = new TpItens();
 
 		item.setNroItem(new NonNegativeInteger(String.valueOf(i)));
-		item.setNroItem(new NonNegativeInteger(f.getJCUKID().toString()));
+		item.setNroItem(new NonNegativeInteger(f.getId().getJCUKID().toString()));
 		item.setCodItemServ(f.getJCLITM());
 		if(montaDescricao) {
 			item.setDescricao(f.getJCAGEN());
@@ -31,7 +31,6 @@ public class TpItensVO {
 		item.setCfop(new NonNegativeInteger(f.getJCBRNOP().toString()));
 		//item.setCnae(f.getJCAA10());
 		item.setCnae(cnae84);
-		System.out.println("BCLF: " + f.getJCBCLF().replace(".", ""));
 		item.setCdListaServ(new BigInteger(f.getJCBCLF().replace(".", "")));
 		//if(ibgeVO.getIbgeList().contains(f.getJCCITY1().trim())) {
 		//item.setCodTribMunicipio(f.getJCB76SFCT().replace(".", ""));
