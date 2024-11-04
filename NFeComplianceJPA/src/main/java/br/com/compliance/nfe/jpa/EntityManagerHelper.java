@@ -44,7 +44,7 @@ public class EntityManagerHelper {
 																													// ORM
 																													// para
 																													// schema
-		properties.put(PersistenceUnitProperties.JDBC_URL, AppConfig.getUrl());		
+		properties.put(PersistenceUnitProperties.JDBC_URL, AppConfig.getUrl());
 		properties.put(PersistenceUnitProperties.JDBC_USER, AppConfig.getUser());
 		properties.put(PersistenceUnitProperties.JDBC_PASSWORD, AppConfig.getPassword());
 		properties.put(PersistenceUnitProperties.JDBC_DRIVER, AppConfig.getDriver());

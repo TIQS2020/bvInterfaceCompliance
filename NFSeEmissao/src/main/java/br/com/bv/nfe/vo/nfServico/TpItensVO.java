@@ -31,7 +31,6 @@ public class TpItensVO {
 		item.setCfop(new NonNegativeInteger(f.getJCBRNOP().toString()));
 		//item.setCnae(f.getJCAA10());
 		item.setCnae(cnae84);
-		System.out.println("BCLF: " + f.getJCBCLF().replace(".", ""));
 		item.setCdListaServ(new BigInteger(f.getJCBCLF().replace(".", "")));
 		//if(ibgeVO.getIbgeList().contains(f.getJCCITY1().trim())) {
 		//item.setCodTribMunicipio(f.getJCB76SFCT().replace(".", ""));

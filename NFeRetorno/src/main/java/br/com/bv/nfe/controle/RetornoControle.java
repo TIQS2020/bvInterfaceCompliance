@@ -160,10 +160,12 @@ public class RetornoControle {
 					f.setJCEV15("E");
 					f.setJCA204("E");
 
+					String descricaoSemQuebraLinha = sbError.toString().replaceAll("\\r|\\n", " ");
+
 					if(sbError.toString().length() < 1499){
-						xmlFileRetornoRoot.getSituacao().setDescricao(sbError.toString().substring(0,sbError.toString().length()));
+						xmlFileRetornoRoot.getSituacao().setDescricao(descricaoSemQuebraLinha.substring(0,sbError.toString().length()));
 					}else{
-						xmlFileRetornoRoot.getSituacao().setDescricao(sbError.toString().substring(0,1499));
+						xmlFileRetornoRoot.getSituacao().setDescricao(descricaoSemQuebraLinha.substring(0,1499));
 					}
 
 					xmlFileRetornoRoot.setJCEV15(lote.getSituacaoLote().toString());

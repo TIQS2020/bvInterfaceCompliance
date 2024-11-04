@@ -12,6 +12,10 @@ public class ArquivoVo {
 	private XmlFileEnvioRoot xmlFileEnvioRoot;
 	private XmlFileCancelamentoRoot xmlFileCancelamentoRoot;
 
+	private boolean isError;
+
+	private String errorStr;
+
 	public ArquivoVo() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -58,5 +62,19 @@ public class ArquivoVo {
 		this.xmlFileCancelamentoRoot = xmlFileCancelamentoRoot;
 	}
 
-	
+	public boolean isError() {
+		return isError;
+	}
+
+	public void setError(boolean error) {
+		isError = error;
+	}
+
+	public String getErrorStr() {
+		return errorStr;
+	}
+
+	public void setErrorStr(String errorStr) {
+		this.errorStr = errorStr;
+	}
 }

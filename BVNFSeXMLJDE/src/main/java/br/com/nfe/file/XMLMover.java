@@ -12,14 +12,10 @@ public class XMLMover {
 
     private static final Logger LOGGER = Logger.getLogger(XMLMover.class.getName());
 
-    public static boolean moveFile(File sourceFile, File destFile) { //void
-        try {
-            Files.move(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            return true;
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Erro ao mover o arquivo: texto a ser definido", e);
-            return false;
-        }
+    public static void moveFile(File sourceFile, File destFile) throws Exception{ //void
+
+       Files.move(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
     }
 
    /* public static void main(String[] args) {

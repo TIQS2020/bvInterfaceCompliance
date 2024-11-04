@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,35 +44,29 @@ public class XmlFileControl {
             for (File file : xmlFiles) {
                 logger.info("Validando arquivo XML: " + file.getName());
                 ArquivoVo arquivoVo = new ArquivoVo();
-
-                // Validando o XML usando XMLReader 
-                if (XMLReader.isValidXML(file)) {
-                    logger.info("XML válido: " + file.getName());
-                    arquivoVo.setNome(file.getName());
-                    arquivoVo.setPath(path);
-                    try {                    	
-                    	// transformando o Arquivo XML em objeto
-                    	 if(operacao.getEnvio() != null) {
-                    		 XMLTransformation<XmlFileEnvioRoot> envioConverter = new XMLTransformation<>(XmlFileEnvioRoot.class);
-                    		 envioVo = envioConverter.fromXml(file);
-                    		 arquivoVo.setXmlFileEnvioRoot(envioVo);
-                         }else if(operacao.getCancelamento() != null) {
-                        	 XMLTransformation<XmlFileCancelamentoRoot> cancelamentoConverter = new XMLTransformation<>(XmlFileCancelamentoRoot.class);
-                        	 cancelamentoVo = cancelamentoConverter.fromXml(file);
-                        	 arquivoVo.setXmlFileCancelamentoRoot(cancelamentoVo);
-                        	 
-                         }                                               
-                        
-                        logger.info("Arquivo XML processado com sucesso: " + file.getName());
-                    } catch (Exception e) {
-                        logger.log(Level.SEVERE, "Erro ao processar o arquivo XML: " + file.getName(), e);
-                    }
-                } else {
-                    logger.warning("Arquivo XML inválido: " + file.getName());
-                }
-                
+                arquivoVo.setNome(file.getName());
+                arquivoVo.setPath(path);
                 arquivoVolist.add(arquivoVo);
-                
+                // Validando o XML usando XMLReader
+                try {
+                    XMLReader.isValidXML(file);
+                    logger.info("XML válido: " + file.getName());
+                    // transformando o Arquivo XML em objeto
+                    if(operacao.getEnvio() != null) {
+                        XMLTransformation<XmlFileEnvioRoot> envioConverter = new XMLTransformation<>(XmlFileEnvioRoot.class);
+                        envioVo = envioConverter.fromXml(file);
+                        arquivoVo.setXmlFileEnvioRoot(envioVo);
+                    }else if(operacao.getCancelamento() != null) {
+                        XMLTransformation<XmlFileCancelamentoRoot> cancelamentoConverter = new XMLTransformation<>(XmlFileCancelamentoRoot.class);
+                        cancelamentoVo = cancelamentoConverter.fromXml(file);
+                        arquivoVo.setXmlFileCancelamentoRoot(cancelamentoVo);
+                    }
+                    logger.info("Arquivo XML processado com sucesso: " + file.getName());
+                }catch(Exception ex){
+                    logger.warning("Arquivo XML inválido: " + file.getName());
+                    arquivoVo.setError(true);
+                    arquivoVo.setErrorStr("Arquivo XML inválido: " + file.getName() + " - " + ex.getMessage());
+                }
             }
         } else {
             logger.warning("Nenhum arquivo XML encontrado no caminho especificado.");
@@ -88,7 +83,7 @@ public class XmlFileControl {
     	XMLMover.moveFile(sourceFile, destFile);
     }
 
-    public boolean objectToRetornoXml(XmlFileRetornoRoot xmlFileRetornoRoot, String filePath, Class classe){
+    public boolean objectToRetornoXml(XmlFileRetornoRoot xmlFileRetornoRoot, String filePath, Class classe) throws Exception{
         return XMLFileCreate.createXMLFile(xmlFileRetornoRoot, filePath, classe);
     }
 }

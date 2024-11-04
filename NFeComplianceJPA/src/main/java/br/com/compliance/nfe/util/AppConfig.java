@@ -44,9 +44,9 @@ public class AppConfig {
 		driver = properties.getProperty("driver").trim();
 		url = properties.getProperty("url").trim();
 
-
 		user = properties.getProperty("user").trim();
 		password = properties.getProperty("password").trim();
+
 /*
 		schemaDTA = properties.getProperty("schemaDTA").trim();
 		schemaCTL = properties.getProperty("schemaCTL").trim();
